@@ -9,6 +9,10 @@ import com.badlogic.androidgames.framework.gl.TextureRegion;
 import com.badlogic.androidgames.framework.impl.GLGraphics;
 
 import com.jkgames.game.models.Bob;
+import com.jkgames.game.models.BridgeSwitch;
+import com.jkgames.game.models.Castle;
+import com.jkgames.game.models.CollectorCoin;
+import com.jkgames.game.models.DrawBridge;
 import com.jkgames.game.models.ZombieBob;
 import com.jkgames.game.models.Platform;
 import com.jkgames.game.models.Sword;
@@ -33,6 +37,10 @@ public class WorldRenderer {
     public void render() {
         //if(world.bob.position.x > cam.position.x )
         	cam.position.x = world.bob.position.x;
+        if(world.bob.position.y >= cam.frustumHeight / 2)
+        	cam.position.y = world.bob.position.y;
+        else
+        	cam.position.y = cam.frustumHeight / 2;
         cam.setViewportAndMatrices();
         renderBackground();
         renderObjects();
@@ -55,14 +63,46 @@ public class WorldRenderer {
         renderBob();
         renderPlatforms();
 		renderVerticalPlatforms();
-        //renderItems();
+        renderCollectorCoins();
+        renderDrawBridge();
+        renderBridgeSwitch();
         renderEvilBobs();
-        //renderCastle();
+        renderCastle();
         batcher.endBatch();
         gl.glDisable(GL10.GL_BLEND);
     }
 
-    private void renderBob() {
+    private void renderBridgeSwitch() {
+    	int len = world.bridgeSwitches.size();
+        for(int i = 0; i < len; i++) {
+        	BridgeSwitch bridgeSwitch = world.bridgeSwitches.get(i);
+            batcher.drawSprite(bridgeSwitch.position.x, bridgeSwitch.position.y, 
+            		BridgeSwitch.BRIDGE_SWITCH_HEIGHT, BridgeSwitch.BRIDGE_SWITCH_WIDTH, Assets.drawBridge);            
+        }
+	}
+
+	private void renderDrawBridge() {
+    	int len = world.drawBridges.size();
+        for(int i = 0; i < len; i++) {
+        	DrawBridge drawBridge = world.drawBridges.get(i);
+            batcher.drawSprite(drawBridge.position.x, drawBridge.position.y, 
+                               DrawBridge.DRAW_BRIDGE_HEIGHT, DrawBridge.DRAW_BRIDGE_WIDTH, Assets.drawBridge);            
+        }
+	}
+
+	private void renderCollectorCoins() 
+    {
+    	// there is always 3 coins
+        for(int i = 0; i < 3; i++) 
+        {
+            CollectorCoin coin = world.collectorCoins.get(i);
+            if(!coin.Collected)
+            	batcher.drawSprite(coin.position.x, coin.position.y, 
+            			CollectorCoin.COLLECTOR_COIN_WIDTH, CollectorCoin.COLLECTOR_COIN_HEIGHT, Assets.platform);            
+        }
+	}
+
+	private void renderBob() {
         TextureRegion keyFrame;
         //switch(world.bob.state) {
         //case Bob.BOB_STATE_FALL:
@@ -137,9 +177,9 @@ public class WorldRenderer {
        }
     }
 
-    //private void renderCastle() {
-    //    Castle castle = world.castle;
-    //    batcher.drawSprite(castle.position.x, castle.position.y, 2, 2, Assets.castle);
-    //}
+    private void renderCastle() {
+        Castle castle = world.castle;
+        batcher.drawSprite(castle.position.x, castle.position.y, 2, 2, Assets.castle);
+    }
 }
 

@@ -11,6 +11,10 @@ import com.badlogic.androidgames.framework.math.Vector2;
 import com.badlogic.androidgames.framework.math.Rectangle;
 
 import com.jkgames.game.models.Bob;
+import com.jkgames.game.models.BridgeSwitch;
+import com.jkgames.game.models.Castle;
+import com.jkgames.game.models.CollectorCoin;
+import com.jkgames.game.models.DrawBridge;
 import com.jkgames.game.models.ZombieBob;
 import com.jkgames.game.models.Level;
 import com.jkgames.game.models.Platform;
@@ -40,9 +44,10 @@ public class World {
     public final List<Platform> platforms;
 	public final List<ZombieBob> evilBobs;
 	public final List<VerticalPlatform> vPlatforms;
-    //public final List<Squirrel> squirrels;
-    //public final List<Coin> coins;
-    //public Castle castle;
+    public final List<CollectorCoin> collectorCoins;
+    public final List<DrawBridge> drawBridges;
+    public final List<BridgeSwitch> bridgeSwitches;
+    public Castle castle;
     public final WorldListener listener;
     public final Random rand;
     
@@ -61,8 +66,9 @@ public class World {
         this.platforms = new ArrayList<Platform>();
 		this.evilBobs = new ArrayList<ZombieBob>();
 		this.vPlatforms = new ArrayList<VerticalPlatform>();
-        //this.squirrels = new ArrayList<Squirrel>();
-        //this.coins = new ArrayList<Coin>();
+		this.collectorCoins = new ArrayList<CollectorCoin>();
+		this.drawBridges = new ArrayList<DrawBridge>();
+		this.bridgeSwitches = new ArrayList<BridgeSwitch>();
         this.listener = listener;
 		this.level = level;
         rand = new Random();
@@ -74,9 +80,8 @@ public class World {
     }
 
     private void generateLevel() {
-		//read all regular platforms
+		// read all regular platforms
 		int numObjs = Integer.parseInt(level.text.substring(2, 4));
-		//String[] objs = new String[15];
 		int start = level.text.indexOf("rp")+3;
 		for(int i = 0; i<numObjs; i++)
 		{			
@@ -87,6 +92,7 @@ public class World {
         for(int i=0; i<numObjs; i++)
         	grid.insertStaticObject(platforms.get(i));
         
+        // read all vertical platforms
 		numObjs = Integer.parseInt(level.text.substring(7, 9));
 		start = level.text.indexOf("vp")+3;
 		for(int i = 0; i<numObjs; i++)
@@ -103,6 +109,7 @@ public class World {
 		bobSword.position.x = bob.position.x + 0.2f;
 		bobSword.position.y = bob.position.y + 0.2f;
 		
+		// read all zombie bobs
 		numObjs = Integer.parseInt(level.text.substring(12, 14));
 		start = level.text.indexOf("eb")+3;
 		for(int i = 0; i<numObjs; i++)
@@ -114,6 +121,46 @@ public class World {
 		
         for(int i=0; i<numObjs; i++)
         	grid.insertDynamicObject(evilBobs.get(i));
+        
+        // read all collector coins (there is always exactly 3)
+        numObjs = 3;
+		start = level.text.indexOf("cc")+3;
+		for(int i = 0; i<numObjs; i++)
+		{			
+			collectorCoins.add(new CollectorCoin(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10))));
+			start += 12;
+		}
+		
+        for(int i=0; i<numObjs; i++)
+        	grid.insertStaticObject(collectorCoins.get(i));
+        
+        // read all drawbridges
+        numObjs = Integer.parseInt(level.text.substring(17, 19));
+		start = level.text.indexOf("db")+3;
+		for(int i = 0; i<numObjs; i++)
+		{			
+			drawBridges.add(new DrawBridge(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10))));
+			start += 12;
+		}
+		
+        for(int i=0; i<numObjs; i++)
+        	grid.insertStaticObject(drawBridges.get(i));
+        
+        // read all drawbridge switches (same amount as bridges)
+        start = level.text.indexOf("sw")+3;
+		for(int i = 0; i<numObjs; i++)
+		{			
+			bridgeSwitches.add(new BridgeSwitch(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10))));
+			start += 12;
+		}
+		
+        for(int i=0; i<numObjs; i++)
+        	grid.insertStaticObject(bridgeSwitches.get(i));
+        
+        // read Castle (there is only 1 castle in each level)
+		start = level.text.indexOf("ca")+3;
+		castle = (new Castle(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10))));
+		grid.insertStaticObject(castle);
     }
 
     public void update(float deltaTime, float accelX, boolean jump, boolean attack) 
@@ -121,7 +168,6 @@ public class World {
 		Vector2 originalBobLocation = bob.position;
         updateBob(deltaTime, accelX, jump, attack);
         updateEvilbobs(deltaTime);
-        //updateCoins(deltaTime);
         if (bob.state != Bob.BOB_STATE_HIT)
             checkCollisions(originalBobLocation);
 		//correct bobSword position in case there was a collision
@@ -180,7 +226,7 @@ public class World {
 					bob.state = Bob.BOB_STATE_HIT;
 				}
 				
-    			else if(collider instanceof Platform || collider instanceof VerticalPlatform)
+    			else if(collider instanceof Platform || collider instanceof VerticalPlatform || collider instanceof DrawBridge)
     			{    				
     				if(bob.velocity.y < 0 && bob.position.y > collider.position.y)
     				{
@@ -199,17 +245,29 @@ public class World {
 						bob.position.x = collider.position.x + collider.bounds.width/2 + bob.bounds.width/2;
 					
     			}
-				
+    			else if(collider instanceof CollectorCoin)
+    			{
+    				//increase score
+    				grid.removeObject(collider);
+    			}
+    			else if(collider instanceof BridgeSwitch)
+    			{
+    				// lower bridge
+    			}
+    			else if (collider instanceof Castle)
+    			{
+    				state = WORLD_STATE_NEXT_LEVEL;
+    			}
     		}
     	}
     	//checkPlatformCollisions(originalBobLocation);
         //checkSquirrelCollisions();
         //checkItemCollisions();
-        checkLevelEnd();
+        //checkLevelEnd();
     }
 
-    private void checkPlatformCollisions(Vector2 originalBobLocation) {
-    }
+//    private void checkPlatformCollisions(Vector2 originalBobLocation) {
+//    }
 
     //private void checkSquirrelCollisions() {
     //    int len = squirrels.size();
@@ -239,11 +297,11 @@ public class World {
     //        return;        
     //}
 
-    private void checkLevelEnd() {
-       if (bob.position.x > 65) {
-           state = WORLD_STATE_NEXT_LEVEL;
-       }
-    }
+//    private void checkLevelEnd() {
+//       if (bob.position.x > 65) {
+//           state = WORLD_STATE_NEXT_LEVEL;
+//       }
+//    }
 
     private void checkGameOver() {
         if (bob.position.y < 1 || bob.state == Bob.BOB_STATE_HIT) {
