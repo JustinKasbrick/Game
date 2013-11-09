@@ -77,7 +77,7 @@ public class WorldRenderer {
         for(int i = 0; i < len; i++) {
         	BridgeSwitch bridgeSwitch = world.bridgeSwitches.get(i);
             batcher.drawSprite(bridgeSwitch.position.x, bridgeSwitch.position.y, 
-            		BridgeSwitch.BRIDGE_SWITCH_HEIGHT, BridgeSwitch.BRIDGE_SWITCH_WIDTH, Assets.drawBridge);            
+            		BridgeSwitch.BRIDGE_SWITCH_HEIGHT, BridgeSwitch.BRIDGE_SWITCH_WIDTH, Assets.bridgeSwitch);            
         }
 	}
 
@@ -98,7 +98,7 @@ public class WorldRenderer {
             CollectorCoin coin = world.collectorCoins.get(i);
             if(!coin.Collected)
             	batcher.drawSprite(coin.position.x, coin.position.y, 
-            			CollectorCoin.COLLECTOR_COIN_WIDTH, CollectorCoin.COLLECTOR_COIN_HEIGHT, Assets.platform);            
+            			CollectorCoin.COLLECTOR_COIN_WIDTH, CollectorCoin.COLLECTOR_COIN_HEIGHT, Assets.collectorCoin);            
         }
 	}
 
