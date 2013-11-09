@@ -2,18 +2,9 @@ package com.jkgames.game.models;
 
 import java.io.IOException;
 import java.io.InputStream;
-
-import javax.microedition.khronos.opengles.GL10;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.opengl.GLUtils;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 
 import com.badlogic.androidgames.framework.FileIO;
-import com.badlogic.androidgames.framework.impl.GLGame;
-import com.badlogic.androidgames.framework.impl.GLGraphics;
 
 public class Level {
     FileIO fileIO;
