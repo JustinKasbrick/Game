@@ -35,6 +35,7 @@ public class Assets {
     public static TextureRegion zombieBob;
     public static TextureRegion castle;
     public static TextureRegion collectorCoin;
+    public static TextureRegion emptyCoin;
     public static TextureRegion drawBridge;
     public static TextureRegion bridgeSwitch;
     public static TextureRegion joyStick;
@@ -96,7 +97,8 @@ public class Assets {
         zombieBob = new TextureRegion(items, 421, 70, 24, 29);
         castle = new TextureRegion(items, 265, 193, 46, 33);
         collectorCoin = new TextureRegion(items, 319, 202, 17, 17);
-        drawBridge = new TextureRegion(items, 0, 259, 352, 32);
+        emptyCoin = new TextureRegion(items, 337, 202, 17, 17);
+        drawBridge = new TextureRegion(items, 0, 259, 160, 32);
         bridgeSwitch = new TextureRegion(items, 0, 291, 32, 32);
         //squirrelFly = new Animation(0.2f, 
         //                            new TextureRegion(items, 0, 160, 32, 32),

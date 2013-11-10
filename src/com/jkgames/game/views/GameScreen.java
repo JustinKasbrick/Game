@@ -292,6 +292,7 @@ public class GameScreen extends GLScreen {
 
     private void presentReady() {
         batcher.drawSprite(400, 240, 192, 32, Assets.ready);
+        presentCollectedCoins();
     }
 
     private void presentRunning() {
@@ -300,11 +301,13 @@ public class GameScreen extends GLScreen {
 		batcher.drawSprite(752, 112, 96, 96, Assets.jumpButton);
 		batcher.drawSprite(656, 48, 96, 96, Assets.attackButton);
         Assets.font.drawText(batcher, scoreString, 16, 480-20);
+        presentCollectedCoins();
     }
 
     private void presentPaused() {        
         batcher.drawSprite(400, 240, 192, 96, Assets.pauseMenu);
         Assets.font.drawText(batcher, scoreString, 16, 800-20);
+        presentCollectedCoins();
     }
 
     private void presentLevelEnd() {
@@ -317,7 +320,7 @@ public class GameScreen extends GLScreen {
     }
 
     private void presentGameOver() {
-        batcher.drawSprite(400, 240, 160, 96, Assets.gameOver);        
+        batcher.drawSprite(400, 240, 160, 96, Assets.gameOver);
         float scoreWidth = Assets.font.glyphWidth * scoreString.length();
         Assets.font.drawText(batcher, scoreString, 240 - scoreWidth / 2, 800-20);
     }
@@ -334,5 +337,21 @@ public class GameScreen extends GLScreen {
 
     @Override
     public void dispose() {       
+    }
+    
+    private void presentCollectedCoins()
+    {
+    	if(world.collectorCoins.get(0).Collected)
+    		batcher.drawSprite(26, 480-52, 32, 32, Assets.collectorCoin);
+    	else
+    		batcher.drawSprite(26, 480-52, 32, 32, Assets.emptyCoin);
+    	if(world.collectorCoins.get(1).Collected)
+    		batcher.drawSprite(56, 480-52, 32, 32, Assets.collectorCoin);
+    	else
+    		batcher.drawSprite(56, 480-52, 32, 32, Assets.emptyCoin);
+    	if(world.collectorCoins.get(2).Collected)
+    		batcher.drawSprite(86, 480-52, 32, 32, Assets.collectorCoin);
+    	else
+    		batcher.drawSprite(86, 480-52, 32, 32, Assets.emptyCoin);
     }
 }

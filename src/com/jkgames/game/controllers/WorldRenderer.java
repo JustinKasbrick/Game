@@ -35,8 +35,10 @@ public class WorldRenderer {
     }
     
     public void render() {
-        //if(world.bob.position.x > cam.position.x )
+        if(world.bob.position.x > 7.5 )
         	cam.position.x = world.bob.position.x;
+        else
+        	cam.position.x = 7.5f;
         if(world.bob.position.y >= cam.frustumHeight / 2)
         	cam.position.y = world.bob.position.y;
         else
@@ -77,7 +79,7 @@ public class WorldRenderer {
         for(int i = 0; i < len; i++) {
         	BridgeSwitch bridgeSwitch = world.bridgeSwitches.get(i);
             batcher.drawSprite(bridgeSwitch.position.x, bridgeSwitch.position.y, 
-            		BridgeSwitch.BRIDGE_SWITCH_HEIGHT, BridgeSwitch.BRIDGE_SWITCH_WIDTH, Assets.bridgeSwitch);            
+            		BridgeSwitch.BRIDGE_SWITCH_WIDTH, BridgeSwitch.BRIDGE_SWITCH_HEIGHT, Assets.bridgeSwitch);
         }
 	}
 
@@ -86,7 +88,7 @@ public class WorldRenderer {
         for(int i = 0; i < len; i++) {
         	DrawBridge drawBridge = world.drawBridges.get(i);
             batcher.drawSprite(drawBridge.position.x, drawBridge.position.y, 
-                               DrawBridge.DRAW_BRIDGE_HEIGHT, DrawBridge.DRAW_BRIDGE_WIDTH, Assets.drawBridge);            
+                               DrawBridge.DRAW_BRIDGE_WIDTH, DrawBridge.DRAW_BRIDGE_HEIGHT, Assets.drawBridge);            
         }
 	}
 
@@ -168,12 +170,12 @@ public class WorldRenderer {
     //}
 
     private void renderEvilBobs() {
-       int len = world.evilBobs.size();
+       int len = world.zombieBob.size();
        for(int i = 0; i < len; i++) {
-    	   ZombieBob eBob = world.evilBobs.get(i);
+    	   ZombieBob eBob = world.zombieBob.get(i);
            //TextureRegion keyFrame = Assets.bob.getKeyFrame(eBob.stateTime, Animation.ANIMATION_LOOPING);
            float side = eBob.velocity.x < 0?-1:1;
-           batcher.drawSprite(eBob.position.x, eBob.position.y, side * 1, 1, Assets.bob);
+           batcher.drawSprite(eBob.position.x, eBob.position.y, side * 1, 1, Assets.zombieBob);
        }
     }
 

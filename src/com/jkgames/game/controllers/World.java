@@ -42,7 +42,7 @@ public class World {
 	public final Sword bobSword;
     
     public final List<Platform> platforms;
-	public final List<ZombieBob> evilBobs;
+	public final List<ZombieBob> zombieBob;
 	public final List<VerticalPlatform> vPlatforms;
     public final List<CollectorCoin> collectorCoins;
     public final List<DrawBridge> drawBridges;
@@ -64,7 +64,7 @@ public class World {
     	this.bob = new Bob(0, 0);
 		this.bobSword = new Sword(0, 0);
         this.platforms = new ArrayList<Platform>();
-		this.evilBobs = new ArrayList<ZombieBob>();
+		this.zombieBob = new ArrayList<ZombieBob>();
 		this.vPlatforms = new ArrayList<VerticalPlatform>();
 		this.collectorCoins = new ArrayList<CollectorCoin>();
 		this.drawBridges = new ArrayList<DrawBridge>();
@@ -114,13 +114,13 @@ public class World {
 		start = level.text.indexOf("eb")+3;
 		for(int i = 0; i<numObjs; i++)
 		{			
-			evilBobs.add(new ZombieBob(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10)),
+			zombieBob.add(new ZombieBob(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10)),
 			Float.parseFloat(level.text.substring(start+12, start+16)), Float.parseFloat(level.text.substring(start+18, start+22))));
 			start += 24;
 		}
 		
         for(int i=0; i<numObjs; i++)
-        	grid.insertDynamicObject(evilBobs.get(i));
+        	grid.insertDynamicObject(zombieBob.get(i));
         
         // read all collector coins (there is always exactly 3)
         numObjs = 3;
@@ -144,7 +144,7 @@ public class World {
 		}
 		
         for(int i=0; i<numObjs; i++)
-        	grid.insertStaticObject(drawBridges.get(i));
+        	grid.insertDynamicObject(drawBridges.get(i));
         
         // read all drawbridge switches (same amount as bridges)
         start = level.text.indexOf("sw")+3;
@@ -165,6 +165,7 @@ public class World {
 
     public void update(float deltaTime, float accelX, boolean jump, boolean attack) 
     {
+    	drawBridges.get(0).Update(deltaTime);
 		Vector2 originalBobLocation = bob.position;
         updateBob(deltaTime, accelX, jump, attack);
         updateEvilbobs(deltaTime);
@@ -198,9 +199,9 @@ public class World {
     }
 
     private void updateEvilbobs(float deltaTime) {
-       int len = evilBobs.size();
+       int len = zombieBob.size();
        for (int i = 0; i < len; i++) {
-    	   ZombieBob eBob = evilBobs.get(i);
+    	   ZombieBob eBob = zombieBob.get(i);
            eBob.update(deltaTime);
        }
     }
@@ -249,10 +250,13 @@ public class World {
     			{
     				//increase score
     				grid.removeObject(collider);
+    				((CollectorCoin) collider).Collected = true;
     			}
     			else if(collider instanceof BridgeSwitch)
     			{
-    				// lower bridge
+    				collider.position.y = bob.position.y - bob.bounds.height/2 - collider.bounds.height/2;
+    				if(drawBridges.get(0).state == DrawBridge.BRIDGE_STATE_CLOSED)
+    					drawBridges.get(0).state = DrawBridge.BRIDGE_STATE_OPENING;
     			}
     			else if (collider instanceof Castle)
     			{
