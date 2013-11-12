@@ -10,7 +10,7 @@ public class Sword extends GameObject
 	public static final int SWORD_STATE_IDOL = 0;
     public static final int SWORD_STATE_ATTACK = 1;
 	
-	float stateTime;
+	public float stateTime;
 	public int state;
 	
     public Sword(float x, float y) 
@@ -23,7 +23,7 @@ public class Sword extends GameObject
 	public void update(float deltaTime, Vector2 position) 
 	{
 		this.position.x = position.x;
-		this.position.y = position.y;
+		this.position.y = position.y + 0.2f;
 		
 		if(state == SWORD_STATE_ATTACK)
 		{
@@ -31,6 +31,10 @@ public class Sword extends GameObject
 			state = SWORD_STATE_IDOL;
 		}
 		
+		if(stateTime < 0.2f && stateTime >= 0)
+			this.position.x += .5;
+			
+		bounds.lowerLeft.set(position).sub(bounds.width / 2, bounds.height / 2);
 		stateTime += deltaTime;
 	}
 	 

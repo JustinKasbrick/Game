@@ -87,11 +87,11 @@ public class Assets {
         //                        new TextureRegion(items, 64, 128, 32, 32),
         //                        new TextureRegion(items, 96, 128, 32, 32));
         bobSwordAttack = new Animation(0.065f,
-									new TextureRegion(items, 128, 193, 33, 33),
-        							new TextureRegion(items, 161, 193, 33, 33),
-        							new TextureRegion(items, 194, 193, 33, 33),
-        							new TextureRegion(items, 228, 193, 33, 33),
-        							new TextureRegion(items, 128, 193, 33, 33));
+									new TextureRegion(items, 128, 193, 34, 34),
+        							//new TextureRegion(items, 161, 193, 33, 33),
+        							//new TextureRegion(items, 194, 193, 33, 33),
+        							new TextureRegion(items, 228, 193, 34, 34),
+        							new TextureRegion(items, 128, 193, 34, 34));
         bob = new TextureRegion(items, 416, 0, 32, 32);
         bob_wSword = new TextureRegion(items, 385, 128, 56, 55);
         zombieBob = new TextureRegion(items, 421, 70, 24, 29);

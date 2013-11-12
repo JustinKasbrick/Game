@@ -239,10 +239,16 @@ public class GameScreen extends GLScreen {
             TouchEvent event = touchEvents.get(i);
             if(event.type != TouchEvent.TOUCH_UP)
                 continue;
-            world = new World(worldListener, new Level(game.getFileIO(), levelArray[currentLevel++]));
-            renderer = new WorldRenderer(glGraphics, batcher, world);
-            world.score = lastScore;
-            state = GAME_READY;
+            
+            touchPoint.set(event.x, event.y);
+            guiCam.touchToWorld(touchPoint);
+            
+            if(OverlapTester.pointInRectangle(attackBounds, touchPoint) && attack == false) {
+		        world = new World(worldListener, new Level(game.getFileIO(), levelArray[currentLevel++]));
+		        renderer = new WorldRenderer(glGraphics, batcher, world);
+		        world.score = lastScore;
+		        state = GAME_READY;
+            }
         }
     }
 

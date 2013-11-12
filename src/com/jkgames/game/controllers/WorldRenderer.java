@@ -170,9 +170,9 @@ public class WorldRenderer {
     //}
 
     private void renderEvilBobs() {
-       int len = world.zombieBob.size();
+       int len = world.zombieBobs.size();
        for(int i = 0; i < len; i++) {
-    	   ZombieBob eBob = world.zombieBob.get(i);
+    	   ZombieBob eBob = world.zombieBobs.get(i);
            //TextureRegion keyFrame = Assets.bob.getKeyFrame(eBob.stateTime, Animation.ANIMATION_LOOPING);
            float side = eBob.velocity.x < 0?-1:1;
            batcher.drawSprite(eBob.position.x, eBob.position.y, side * 1, 1, Assets.zombieBob);

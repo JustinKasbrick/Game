@@ -42,7 +42,7 @@ public class World {
 	public final Sword bobSword;
     
     public final List<Platform> platforms;
-	public final List<ZombieBob> zombieBob;
+	public final List<ZombieBob> zombieBobs;
 	public final List<VerticalPlatform> vPlatforms;
     public final List<CollectorCoin> collectorCoins;
     public final List<DrawBridge> drawBridges;
@@ -64,7 +64,7 @@ public class World {
     	this.bob = new Bob(0, 0);
 		this.bobSword = new Sword(0, 0);
         this.platforms = new ArrayList<Platform>();
-		this.zombieBob = new ArrayList<ZombieBob>();
+		this.zombieBobs = new ArrayList<ZombieBob>();
 		this.vPlatforms = new ArrayList<VerticalPlatform>();
 		this.collectorCoins = new ArrayList<CollectorCoin>();
 		this.drawBridges = new ArrayList<DrawBridge>();
@@ -106,7 +106,7 @@ public class World {
 		
 		bob.position.x = platforms.get(0).position.x;
 		bob.position.y = platforms.get(0).position.y + platforms.get(0).bounds.height/2 + bob.bounds.height/2;
-		bobSword.position.x = bob.position.x + 0.2f;
+		bobSword.position.x = bob.position.x;
 		bobSword.position.y = bob.position.y + 0.2f;
 		
 		// read all zombie bobs
@@ -114,13 +114,13 @@ public class World {
 		start = level.text.indexOf("eb")+3;
 		for(int i = 0; i<numObjs; i++)
 		{			
-			zombieBob.add(new ZombieBob(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10)),
+			zombieBobs.add(new ZombieBob(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10)),
 			Float.parseFloat(level.text.substring(start+12, start+16)), Float.parseFloat(level.text.substring(start+18, start+22))));
 			start += 24;
 		}
 		
         for(int i=0; i<numObjs; i++)
-        	grid.insertDynamicObject(zombieBob.get(i));
+        	grid.insertDynamicObject(zombieBobs.get(i));
         
         // read all collector coins (there is always exactly 3)
         numObjs = 3;
@@ -171,14 +171,43 @@ public class World {
         updateEvilbobs(deltaTime);
         if (bob.state != Bob.BOB_STATE_HIT)
             checkCollisions(originalBobLocation);
-		//correct bobSword position in case there was a collision
-		bobSword.position.x = bob.position.x;
-		bobSword.position.y = bob.position.y;
 		
+        updateBobWeapon(deltaTime, attack);
+        //if(bobSword.stateTime < 0.2f)
+        	checkWeaponCollisions(bobSword);
         checkGameOver();
     }
 
-    private void updateBob(float deltaTime, float accelX, boolean jump, boolean attack) {
+    private void checkWeaponCollisions(Sword weapon) {
+		// TODO create bad guy abstract class
+    	List<GameObject> colliders = grid.getPotentialColliders(weapon);
+    	int len = colliders.size();
+    	for(int i = 0; i < len; i++) {
+    		GameObject collider = colliders.get(i);
+			if(collider instanceof ZombieBob)
+			{
+				if(((ZombieBob) collider).state == ZombieBob.ZOMBIE_BOB_STATE_ALIVE)
+				{
+					if(OverlapTester.overlapRectangles(weapon.bounds, collider.bounds)) 
+		    		{
+						
+						((ZombieBob) collider).state = ZombieBob.ZOMBIE_BOB_STATE_HIT;
+						((ZombieBob) collider).velocity.x *= -1;
+						((ZombieBob) collider).velocity.y = ZombieBob.HIT_VELOCITY_Y;
+						grid.removeObject(collider);
+		    		}
+				}
+			}
+    	}
+	}
+
+	private void updateBobWeapon(float deltaTime, boolean attack) {
+    	if(attack)
+			bobSword.state = Sword.SWORD_STATE_ATTACK;
+		bobSword.update(deltaTime, bob.position);
+	}
+
+	private void updateBob(float deltaTime, float accelX, boolean jump, boolean attack) {
         //if (bob.state != Bob.BOB_STATE_HIT && bob.position.y <= 0.5f)
         //    bob.hitPlatform();
         if (bob.state != Bob.BOB_STATE_HIT)
@@ -188,21 +217,20 @@ public class World {
 			bob.velocity.y = Bob.BOB_JUMP_VELOCITY;
 			bob.state = Bob.BOB_STATE_JUMP;
 		}
-		if(attack)
-			bobSword.state = Sword.SWORD_STATE_ATTACK;
 			
         bob.update(deltaTime);
-		
-		if(attack)
-			bobSword.state = Sword.SWORD_STATE_ATTACK;
-		bobSword.update(deltaTime, bob.position);
     }
 
     private void updateEvilbobs(float deltaTime) {
-       int len = zombieBob.size();
+       int len = zombieBobs.size();
        for (int i = 0; i < len; i++) {
-    	   ZombieBob eBob = zombieBob.get(i);
+    	   ZombieBob eBob = zombieBobs.get(i);
            eBob.update(deltaTime);
+           if(eBob.state == ZombieBob.ZOMBIE_BOB_STATE_DEAD)
+           {
+        	   zombieBobs.remove(eBob);
+        	   len = zombieBobs.size();
+           }
        }
     }
 
