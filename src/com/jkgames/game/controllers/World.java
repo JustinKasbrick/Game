@@ -60,7 +60,7 @@ public class World {
     SpatialHashGrid grid;
 
     public World(WorldListener listener, Level level) {
-    	grid = new SpatialHashGrid(WORLD_WIDTH, WORLD_HEIGHT, 5f);
+    	grid = new SpatialHashGrid(WORLD_WIDTH, WORLD_HEIGHT, 10f);
     	this.bob = new Bob(0, 0);
 		this.bobSword = new Sword(0, 0);
         this.platforms = new ArrayList<Platform>();
