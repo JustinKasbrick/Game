@@ -58,9 +58,11 @@ public class World {
     public int state;
 	Level level;
     SpatialHashGrid grid;
+    public int tileArray[][];
 
     public World(WorldListener listener, Level level) {
     	grid = new SpatialHashGrid(WORLD_WIDTH, WORLD_HEIGHT, 10f);
+    	tileArray = new int[WORLD_WIDTH][WORLD_HEIGHT];
     	this.bob = new Bob(0, 0);
 		this.bobSword = new Sword(0, 0);
         this.platforms = new ArrayList<Platform>();
@@ -90,7 +92,15 @@ public class World {
 		}
 		
         for(int i=0; i<numObjs; i++)
+        {
+        	Platform p = platforms.get(i);
         	grid.insertStaticObject(platforms.get(i));
+        	tileArray[(int)p.position.x - 2][(int)p.position.y] = WORLD_TILE_PLATFORM;
+        	tileArray[(int)p.position.x - 1][(int)p.position.y] = WORLD_TILE_PLATFORM;
+        	tileArray[(int)p.position.x][(int)p.position.y] = WORLD_TILE_PLATFORM;
+        	tileArray[(int)p.position.x + 1][(int)p.position.y] = WORLD_TILE_PLATFORM;
+        	tileArray[(int)p.position.x + 2][(int)p.position.y] = WORLD_TILE_PLATFORM;
+        }
         
         // read all vertical platforms
 		numObjs = Integer.parseInt(level.text.substring(7, 9));
@@ -102,7 +112,11 @@ public class World {
 		}
 		
         for(int i=0; i<numObjs; i++)
+        {
+        	
         	grid.insertStaticObject(vPlatforms.get(i));
+        	
+        }
 		
 		bob.position.x = platforms.get(0).position.x;
 		bob.position.y = platforms.get(0).position.y + platforms.get(0).bounds.height/2 + bob.bounds.height/2;
@@ -166,11 +180,15 @@ public class World {
     public void update(float deltaTime, float accelX, boolean jump, boolean attack) 
     {
     	drawBridges.get(0).Update(deltaTime);
-		Vector2 originalBobLocation = bob.position;
+		Bob originalBobLocation = bob;
         updateBob(deltaTime, accelX, jump, attack);
         updateEvilbobs(deltaTime);
         if (bob.state != Bob.BOB_STATE_HIT)
-            checkCollisions(originalBobLocation);
+        {
+            //checkCollisions(originalBobLocation);
+        	checkPlatformCollisions(originalBobLocation);
+        	
+        }
 		
         updateBobWeapon(deltaTime, attack);
         //if(bobSword.stateTime < 0.2f)
@@ -298,8 +316,43 @@ public class World {
         //checkLevelEnd();
     }
 
-//    private void checkPlatformCollisions(Vector2 originalBobLocation) {
-//    }
+    private void checkPlatformCollisions(Bob originalBobLocation) {
+    	Rectangle aabb = new Rectangle(originalBobLocation.bounds.lowerLeft.x, 
+    			originalBobLocation.bounds.lowerLeft.y,
+    			this.bob.position.x + this.bob.bounds.width/2, this.bob.position.y + this.bob.bounds.height/2);
+    	int x = (int)aabb.lowerLeft.x;
+    	int y = (int)aabb.lowerLeft.y;
+    	if(tileArray[x][y] == WORLD_TILE_PLATFORM)
+    	{
+	    	if(OverlapTester.overlapRectangles(bob.bounds, new Rectangle(x, y, 1f, 1f))) 
+			{
+	    		bob.velocity.y = 0;
+	    		bob.position.y = y+1+(Bob.BOB_BOUNDS_HEIGHT/2);
+			}
+    	}
+    	if(tileArray[x][y+1] == WORLD_TILE_PLATFORM)
+    	{
+	    	if(OverlapTester.overlapRectangles(bob.bounds, new Rectangle(x, y+1, 1f, 1f))) 
+			{
+	    		bob.position.x = x+1+(Bob.BOB_BOUNDS_WIDTH/2);
+			}
+    	}
+    	if(tileArray[x+1][y] == WORLD_TILE_PLATFORM)
+    	{
+	    	if(OverlapTester.overlapRectangles(bob.bounds, new Rectangle(x+1, y, 1f, 1f))) 
+			{
+	    		bob.velocity.y = 0;
+	    		bob.position.y = y+1+(Bob.BOB_BOUNDS_HEIGHT/2);
+			}
+    	}
+    	if(tileArray[x+1][y+1] == WORLD_TILE_PLATFORM)
+    	{
+	    	if(OverlapTester.overlapRectangles(bob.bounds, new Rectangle(x+1, y+1, 1f, 1f))) 
+			{
+	    		bob.position.x = x+1-(Bob.BOB_BOUNDS_WIDTH/2);
+			}
+    	}
+    }
 
     //private void checkSquirrelCollisions() {
     //    int len = squirrels.size();
