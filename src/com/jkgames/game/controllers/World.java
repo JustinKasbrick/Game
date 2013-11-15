@@ -185,9 +185,8 @@ public class World {
         updateEvilbobs(deltaTime);
         if (bob.state != Bob.BOB_STATE_HIT)
         {
-            //checkCollisions(originalBobLocation);
         	checkPlatformCollisions(originalBobLocation);
-        	
+            checkCollisions();
         }
 		
         updateBobWeapon(deltaTime, attack);
@@ -260,7 +259,7 @@ public class World {
     //    }
     //}
 
-    private void checkCollisions(Vector2 originalBobLocation) {
+    private void checkCollisions() {
     	List<GameObject> colliders = grid.getPotentialColliders(bob);
     	int len = colliders.size();
     	for(int i = 0; i < len; i++) {
@@ -273,7 +272,7 @@ public class World {
 					bob.state = Bob.BOB_STATE_HIT;
 				}
 				
-    			else if(collider instanceof Platform || collider instanceof VerticalPlatform || collider instanceof DrawBridge)
+    			else if(collider instanceof DrawBridge)
     			{    				
     				if(bob.velocity.y < 0 && bob.position.y > collider.position.y)
     				{
@@ -324,35 +323,66 @@ public class World {
     	int y = (int)aabb.lowerLeft.y;
     	if(tileArray[x][y] == WORLD_TILE_PLATFORM)
     	{
-	    	if(OverlapTester.overlapRectangles(bob.bounds, new Rectangle(x, y, 1f, 1f))) 
-			{
-	    		bob.velocity.y = 0;
-	    		bob.position.y = y+1+(Bob.BOB_BOUNDS_HEIGHT/2);
-			}
+    		checkCollisionPoints(x, y);
     	}
     	if(tileArray[x][y+1] == WORLD_TILE_PLATFORM)
     	{
-	    	if(OverlapTester.overlapRectangles(bob.bounds, new Rectangle(x, y+1, 1f, 1f))) 
-			{
-	    		bob.position.x = x+1+(Bob.BOB_BOUNDS_WIDTH/2);
-			}
+    		checkCollisionPoints(x, y+1);
     	}
     	if(tileArray[x+1][y] == WORLD_TILE_PLATFORM)
     	{
-	    	if(OverlapTester.overlapRectangles(bob.bounds, new Rectangle(x+1, y, 1f, 1f))) 
-			{
-	    		bob.velocity.y = 0;
-	    		bob.position.y = y+1+(Bob.BOB_BOUNDS_HEIGHT/2);
-			}
+    		checkCollisionPoints(x+1, y);
     	}
     	if(tileArray[x+1][y+1] == WORLD_TILE_PLATFORM)
     	{
-	    	if(OverlapTester.overlapRectangles(bob.bounds, new Rectangle(x+1, y+1, 1f, 1f))) 
-			{
-	    		bob.position.x = x+1-(Bob.BOB_BOUNDS_WIDTH/2);
-			}
+    		checkCollisionPoints(x+1, y+1);
     	}
     }
+
+	private void checkCollisionPoints(int x, int y) {
+		if(bob.velocity.y < 0)
+		{
+			if(OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
+					bob.position.x + 0.2f, bob.position.y-(Bob.BOB_BOUNDS_HEIGHT/2))
+					|| OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
+							bob.position.x - 0.2f, bob.position.y-(Bob.BOB_BOUNDS_HEIGHT/2))) 
+			{
+				bob.velocity.y = 0;
+				bob.position.y = y+1+(Bob.BOB_BOUNDS_HEIGHT/2);
+			}
+		}
+		else if(bob.velocity.y > 0)
+		{
+			if(OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
+					bob.position.x + 0.2f, bob.position.y+(Bob.BOB_BOUNDS_HEIGHT/2))
+					|| OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
+							bob.position.x - 0.2f, bob.position.y+(Bob.BOB_BOUNDS_HEIGHT/2))) 
+			{
+				bob.velocity.y = 0;
+				bob.position.y = y-(Bob.BOB_BOUNDS_HEIGHT/2);
+			}
+		}
+		if(bob.velocity.x > 0)
+		{
+			if(OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
+					bob.position.x+(Bob.BOB_BOUNDS_WIDTH/2), bob.position.y+0.2f)
+					|| OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
+					bob.position.x+(Bob.BOB_BOUNDS_WIDTH/2), bob.position.y-0.2f))
+					{    						
+						bob.position.x = x-(Bob.BOB_BOUNDS_WIDTH/2);
+					}
+		}
+		else if(bob.velocity.x < 0)
+		{
+			if(OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
+					bob.position.x-(Bob.BOB_BOUNDS_WIDTH/2), bob.position.y+0.2f)
+					|| OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
+					bob.position.x-(Bob.BOB_BOUNDS_WIDTH/2), bob.position.y-0.2f))
+					{    						
+						bob.position.x = x+1+(Bob.BOB_BOUNDS_WIDTH/2);
+					}
+		}
+	}
 
     //private void checkSquirrelCollisions() {
     //    int len = squirrels.size();
