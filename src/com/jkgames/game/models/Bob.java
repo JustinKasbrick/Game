@@ -1,6 +1,7 @@
 package com.jkgames.game.models;
 
 import com.badlogic.androidgames.framework.DynamicGameObject;
+import com.badlogic.androidgames.framework.math.Vector2;
 
 import com.jkgames.game.controllers.World;
 
@@ -15,8 +16,18 @@ public class Bob extends DynamicGameObject{
     public static final float BOB_BOUNDS_HEIGHT = 0.8f;
     public static final float BOB_WIDTH = 0.8f;
     public static final float BOB_HEIGHT = 0.8f;
-	public static final int BOB_DIRECTION_RIGHT = 6;
-	public static final int BOB_DIRECTION_LEFT = 7;
+	public static final int BOB_DIRECTION_RIGHT = 1;
+	public static final int BOB_DIRECTION_LEFT = -1;
+	
+	public static final Vector2 BOB_TOP_LEFT_COLISSION = new Vector2(-BOB_BOUNDS_WIDTH/4, BOB_BOUNDS_HEIGHT/2);
+	public static final Vector2 BOB_TOP_RIGHT_COLISSION = new Vector2(BOB_BOUNDS_WIDTH/4, BOB_BOUNDS_HEIGHT/2);
+	public static final Vector2 BOB_BOTTOM_LEFT_COLISSION = new Vector2(-BOB_BOUNDS_WIDTH/4, -BOB_BOUNDS_HEIGHT/2);
+	public static final Vector2 BOB_BOTTOM_RIGHT_COLISSION = new Vector2(BOB_BOUNDS_WIDTH/4, -BOB_BOUNDS_HEIGHT/2);
+	
+	public static final Vector2 BOB_FRONT_TOP_COLISSION = new Vector2(BOB_BOUNDS_WIDTH/2, BOB_BOUNDS_HEIGHT/4);
+	public static final Vector2 BOB_FRONT_BOTTOM_COLISSION = new Vector2(BOB_BOUNDS_WIDTH/2, -BOB_BOUNDS_HEIGHT/4);
+	public static final Vector2 BOB_BACK_TOP_COLISSION = new Vector2(-BOB_BOUNDS_WIDTH/2, BOB_BOUNDS_HEIGHT/4);
+	public static final Vector2 BOB_BACK_BOTTOM_COLISSION = new Vector2(-BOB_BOUNDS_WIDTH/2, -BOB_BOUNDS_HEIGHT/4);
 	
     public int state;
     float stateTime;

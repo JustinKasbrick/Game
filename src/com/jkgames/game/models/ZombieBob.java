@@ -41,7 +41,5 @@ public class ZombieBob extends DynamicGameObject{
 			velocity.x = -velocity.x;
 		if(velocity.x < 0 && position.x < minX)
 			velocity.x = -velocity.x;
-		
-		
     }
 }

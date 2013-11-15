@@ -52,16 +52,18 @@ public class World {
     public final Random rand;
     
 	public Rectangle platformBounds;
+	Vector2 tempVector2A = new Vector2(0, 0);
+	Vector2 tempVector2B = new Vector2(0, 0);
 	
     public float heightSoFar;
-    public int score;    
+    public int score;
     public int state;
 	Level level;
     SpatialHashGrid grid;
     public int tileArray[][];
 
     public World(WorldListener listener, Level level) {
-    	grid = new SpatialHashGrid(WORLD_WIDTH, WORLD_HEIGHT, 10f);
+    	grid = new SpatialHashGrid(WORLD_WIDTH, WORLD_HEIGHT, 25f);
     	tileArray = new int[WORLD_WIDTH][WORLD_HEIGHT];
     	this.bob = new Bob(0, 0);
 		this.bobSword = new Sword(0, 0);
@@ -180,22 +182,27 @@ public class World {
     public void update(float deltaTime, float accelX, boolean jump, boolean attack) 
     {
     	drawBridges.get(0).Update(deltaTime);
-		Bob originalBobLocation = bob;
         updateBob(deltaTime, accelX, jump, attack);
         updateEvilbobs(deltaTime);
         if (bob.state != Bob.BOB_STATE_HIT)
         {
-        	checkPlatformCollisions(originalBobLocation);
-            checkCollisions();
+        	checkPlatformCollisions();
+            //checkCollisions();
+            checkCollisions2();
         }
 		
         updateBobWeapon(deltaTime, attack);
-        //if(bobSword.stateTime < 0.2f)
+        if(bobSword.stateTime < 0.2f)
         	checkWeaponCollisions(bobSword);
         checkGameOver();
     }
 
-    private void checkWeaponCollisions(Sword weapon) {
+    private void checkCollisions2() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void checkWeaponCollisions(Sword weapon) {
 		// TODO create bad guy abstract class
     	List<GameObject> colliders = grid.getPotentialColliders(weapon);
     	int len = colliders.size();
@@ -315,12 +322,9 @@ public class World {
         //checkLevelEnd();
     }
 
-    private void checkPlatformCollisions(Bob originalBobLocation) {
-    	Rectangle aabb = new Rectangle(originalBobLocation.bounds.lowerLeft.x, 
-    			originalBobLocation.bounds.lowerLeft.y,
-    			this.bob.position.x + this.bob.bounds.width/2, this.bob.position.y + this.bob.bounds.height/2);
-    	int x = (int)aabb.lowerLeft.x;
-    	int y = (int)aabb.lowerLeft.y;
+    private void checkPlatformCollisions() {
+    	int x = (int)bob.bounds.lowerLeft.x;
+    	int y = (int)bob.bounds.lowerLeft.y;
     	if(tileArray[x][y] == WORLD_TILE_PLATFORM)
     	{
     		checkCollisionPoints(x, y);
@@ -340,12 +344,15 @@ public class World {
     }
 
 	private void checkCollisionPoints(int x, int y) {
+		
 		if(bob.velocity.y < 0)
 		{
+			tempVector2A.set(bob.position);
+			tempVector2B.set(bob.position);
 			if(OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
-					bob.position.x + 0.2f, bob.position.y-(Bob.BOB_BOUNDS_HEIGHT/2))
+					tempVector2A.add(Bob.BOB_BOTTOM_LEFT_COLISSION))
 					|| OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
-							bob.position.x - 0.2f, bob.position.y-(Bob.BOB_BOUNDS_HEIGHT/2))) 
+							tempVector2B.add(Bob.BOB_BOTTOM_RIGHT_COLISSION)))
 			{
 				bob.velocity.y = 0;
 				bob.position.y = y+1+(Bob.BOB_BOUNDS_HEIGHT/2);
@@ -353,10 +360,12 @@ public class World {
 		}
 		else if(bob.velocity.y > 0)
 		{
+			tempVector2A.set(bob.position);
+			tempVector2B.set(bob.position);
 			if(OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
-					bob.position.x + 0.2f, bob.position.y+(Bob.BOB_BOUNDS_HEIGHT/2))
+					tempVector2A.add(Bob.BOB_TOP_LEFT_COLISSION))
 					|| OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
-							bob.position.x - 0.2f, bob.position.y+(Bob.BOB_BOUNDS_HEIGHT/2))) 
+							tempVector2B.add(Bob.BOB_TOP_RIGHT_COLISSION))) 
 			{
 				bob.velocity.y = 0;
 				bob.position.y = y-(Bob.BOB_BOUNDS_HEIGHT/2);
@@ -364,20 +373,24 @@ public class World {
 		}
 		if(bob.velocity.x > 0)
 		{
+			tempVector2A.set(bob.position);
+			tempVector2B.set(bob.position);
 			if(OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
-					bob.position.x+(Bob.BOB_BOUNDS_WIDTH/2), bob.position.y+0.2f)
+					tempVector2A.add(Bob.BOB_FRONT_BOTTOM_COLISSION))
 					|| OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
-					bob.position.x+(Bob.BOB_BOUNDS_WIDTH/2), bob.position.y-0.2f))
+							tempVector2B.add(Bob.BOB_FRONT_TOP_COLISSION)))
 					{    						
 						bob.position.x = x-(Bob.BOB_BOUNDS_WIDTH/2);
 					}
 		}
 		else if(bob.velocity.x < 0)
 		{
+			tempVector2A.set(bob.position);
+			tempVector2B.set(bob.position);
 			if(OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
-					bob.position.x-(Bob.BOB_BOUNDS_WIDTH/2), bob.position.y+0.2f)
+					tempVector2A.add(Bob.BOB_BACK_BOTTOM_COLISSION))
 					|| OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
-					bob.position.x-(Bob.BOB_BOUNDS_WIDTH/2), bob.position.y-0.2f))
+							tempVector2B.add(Bob.BOB_BACK_TOP_COLISSION)))
 					{    						
 						bob.position.x = x+1+(Bob.BOB_BOUNDS_WIDTH/2);
 					}
