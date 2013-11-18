@@ -16,6 +16,7 @@ import com.jkgames.game.models.Castle;
 import com.jkgames.game.models.CollectorCoin;
 import com.jkgames.game.models.DrawBridge;
 import com.jkgames.game.models.Tile;
+import com.jkgames.game.models.TileFactory;
 import com.jkgames.game.models.ZombieBob;
 import com.jkgames.game.models.Level;
 import com.jkgames.game.models.Platform;
@@ -63,11 +64,12 @@ public class World {
 	Level tileLevel;
 	
     SpatialHashGrid grid;
-    public Tile tileArray[][];
-
+    public int tileArray[][];
+    public TileFactory tileFactory;
+    
     public World(WorldListener listener, Level level, Level tileLevel) {
     	grid = new SpatialHashGrid(WORLD_WIDTH, WORLD_HEIGHT, 25f);
-    	tileArray = new Tile[WORLD_HEIGHT][WORLD_WIDTH];
+    	tileArray = new int[WORLD_HEIGHT][WORLD_WIDTH];
     	this.bob = new Bob(0, 0);
 		this.bobSword = new Sword(0, 0);
         this.platforms = new ArrayList<Platform>();
@@ -79,6 +81,7 @@ public class World {
         this.listener = listener;
 		this.level = level;
 		this.tileLevel = tileLevel;
+		this.tileFactory = new TileFactory();
         rand = new Random();
         generateLevel();
         
@@ -94,7 +97,7 @@ public class World {
     	{
     		for(int j=0; j<WORLD_WIDTH; j++)
     		{
-    			tileArray[i][j] = new Tile(j+0.5f, i+0.5f, 1, 1, Integer.parseInt(tileLevel.text.substring(start, start+2)));
+    			tileArray[i][j] = Integer.parseInt(tileLevel.text.substring(start, start+2));
     			start += 2;
     		}
     	}
@@ -344,22 +347,22 @@ public class World {
     private void checkPlatformCollisions() {
     	int x = (int)bob.bounds.lowerLeft.x;
     	int y = (int)bob.bounds.lowerLeft.y;
-    	if(tileArray[y][x].collidable)
+    	if(tileFactory.getTile(tileArray[y][x]).isCollidable())
     	{
     		checkCollisionPoints(x, y);
 //    		checkCollision(x, y);
     	}
-    	if(tileArray[y][x+1].collidable)
+    	if(tileFactory.getTile(tileArray[y][x+1]).isCollidable())
     	{
     		checkCollisionPoints(x+1, y);
 //    		checkCollision(x+1, y);
     	}
-    	if(tileArray[y+1][x].collidable)
+    	if(tileFactory.getTile(tileArray[y+1][x]).isCollidable())
     	{
     		checkCollisionPoints(x, y+1);
 //    		checkCollision(x, y+1);
     	}
-    	if(tileArray[y+1][x+1].collidable)
+    	if(tileFactory.getTile(tileArray[y+1][x+1]).isCollidable())
     	{
     		checkCollisionPoints(x+1, y+1);
 //    		checkCollision(x+1, y+1);
@@ -369,27 +372,27 @@ public class World {
 	private void checkCollision(int x, int y) {
 		if(bob.velocity.y > 0)
 		{
-			if(bob.position.y > tileArray[y][x].position.y-0.5-0.4)
+			if(bob.position.y > y-0.5-0.4)
 			{
-				bob.position.y = tileArray[y][x].position.y-0.5f-0.4f;
+				bob.position.y = y-0.5f-0.4f;
 				bob.velocity.y = 0;
 			}
 		}
 		else if(bob.velocity.y < 0)
 		{
-			if(bob.position.y < tileArray[y][x].position.y+0.5+0.4)
+			if(bob.position.y < y+0.5+0.4)
 			{
-				bob.position.y = tileArray[y][x].position.y+0.5f+0.4f;
+				bob.position.y = y+0.5f+0.4f;
 				bob.velocity.y = 0;
 			}
 		}
 		
 		if(bob.velocity.x > 0)
-			if(bob.position.x > tileArray[y][x].position.x-0.5-0.4 )
-				bob.position.x = tileArray[y][x].position.x-0.5f-0.4f ;
+			if(bob.position.x > x-0.5-0.4 )
+				bob.position.x = x-0.5f-0.4f ;
 		else if(bob.velocity.x < 0)	
-			if(bob.position.x < tileArray[y][x].position.x+0.5f+0.4f)
-				bob.position.x = tileArray[y][x].position.x+0.5f+0.4f;
+			if(bob.position.x < x+0.5f+0.4f)
+				bob.position.x = x+0.5f+0.4f;
 	}
 
 	private void checkCollisionPoints(int x, int y) {
@@ -404,7 +407,7 @@ public class World {
 							tempVector2B.add(Bob.BOB_BOTTOM_RIGHT_COLISSION)))
 			{
 				bob.velocity.y = 0;
-				bob.position.y = y+1+(Bob.BOB_BOUNDS_HEIGHT/2);
+				bob.position.y = y+1+(bob.bounds.height/2);
 			}
 		}
 		else if(bob.velocity.y > 0)
@@ -417,7 +420,7 @@ public class World {
 							tempVector2B.add(Bob.BOB_TOP_RIGHT_COLISSION))) 
 			{
 				bob.velocity.y = 0;
-				bob.position.y = y-(Bob.BOB_BOUNDS_HEIGHT/2);
+				bob.position.y = y-(bob.bounds.height/2);
 			}
 		}
 		if(bob.velocity.x > 0)
@@ -429,7 +432,7 @@ public class World {
 					|| OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
 							tempVector2B.add(Bob.BOB_FRONT_TOP_COLISSION)))
 					{    						
-						bob.position.x = x-(Bob.BOB_BOUNDS_WIDTH/2);
+						bob.position.x = x-(bob.bounds.width/2);
 					}
 		}
 		else if(bob.velocity.x < 0)
@@ -441,7 +444,7 @@ public class World {
 					|| OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
 							tempVector2B.add(Bob.BOB_BACK_TOP_COLISSION)))
 					{    						
-						bob.position.x = x+1+(Bob.BOB_BOUNDS_WIDTH/2);
+						bob.position.x = x+1+(bob.bounds.width/2);
 					}
 		}
 	}

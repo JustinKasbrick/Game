@@ -96,12 +96,12 @@ public class Assets {
         //                        new TextureRegion(items, 64, 128, 32, 32),
         //                        new TextureRegion(items, 96, 128, 32, 32));
         bobSwordAttack = new Animation(0.065f,
-									new TextureRegion(items, 128, 193, 34, 34),
+									new TextureRegion(items, 129, 194, 32, 33),
         							//new TextureRegion(items, 161, 193, 33, 33),
         							//new TextureRegion(items, 194, 193, 33, 33),
-        							new TextureRegion(items, 228, 193, 34, 34),
-        							new TextureRegion(items, 128, 193, 34, 34));
-        bob = new TextureRegion(items, 416, 0, 32, 32);
+        							new TextureRegion(items, 229, 194, 32, 33),
+        							new TextureRegion(items, 129, 194, 32, 33));
+        bob = new TextureRegion(items, 419, 1, 28, 30);
         bob_wSword = new TextureRegion(items, 385, 128, 56, 55);
         zombieBob = new TextureRegion(items, 421, 70, 24, 29);
         castle = new TextureRegion(items, 265, 193, 46, 33);
@@ -115,7 +115,7 @@ public class Assets {
         platform = new TextureRegion(items, 0, 0, 160, 32);
 		vPlatform = new TextureRegion(items, 64, 32, 32, 96);
 		shortPlatform = new TextureRegion(items, 96, 32, 64, 32);
-		bridgeTile = new TextureRegion(items, 128, 228, 32, 32);
+		bridgeTile = new TextureRegion(items, 128, 228, 32, 31);
 		dirtTile = new TextureRegion(items, 0, 32, 32, 32);
 		grassTile = new TextureRegion(items, 0, 64, 32, 32);
 		waterTile = new TextureRegion(items, 32, 32, 32, 32);

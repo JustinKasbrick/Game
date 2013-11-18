@@ -13,6 +13,7 @@ import com.jkgames.game.models.BridgeSwitch;
 import com.jkgames.game.models.Castle;
 import com.jkgames.game.models.CollectorCoin;
 import com.jkgames.game.models.DrawBridge;
+import com.jkgames.game.models.GameTile;
 import com.jkgames.game.models.Tile;
 import com.jkgames.game.models.ZombieBob;
 import com.jkgames.game.models.Platform;
@@ -92,8 +93,8 @@ public class WorldRenderer {
 		for(int i=(int)(cam.position.y-(cam.frustumHeight/2)); i<(int)(cam.position.y+(cam.frustumHeight/2)+1); i++)
 			for(int j=(int)(cam.position.x-(cam.frustumWidth/2)); j<(int)(cam.position.x+(cam.frustumWidth/2)+1); j++)
 			{
-				if(world.tileArray[i][j].type != Tile.TILE_TYPE_NONE)
-					batcher.drawSprite(j+0.5f, i+0.5f, 1, 1, world.tileArray[i][j].getTexture());
+				if(world.tileArray[i][j] != GameTile.TILE_TYPE_NONE)
+					batcher.drawSprite(j+0.5f, i+0.5f, 1, 1, world.tileFactory.getTile(world.tileArray[i][j]).getTextureRegion());
 			}
 		
 	}
