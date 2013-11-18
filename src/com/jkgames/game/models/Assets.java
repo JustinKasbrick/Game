@@ -30,24 +30,33 @@ public class Assets {
     //public static Animation bobJump;
     //public static Animation bobFall;
     public static Animation bobSwordAttack;
+    
     public static TextureRegion bob;
     public static TextureRegion bob_wSword;
     public static TextureRegion zombieBob;
+    
     public static TextureRegion castle;
     public static TextureRegion collectorCoin;
     public static TextureRegion emptyCoin;
     public static TextureRegion drawBridge;
     public static TextureRegion bridgeSwitch;
+    
     public static TextureRegion joyStick;
     public static TextureRegion jumpButton;
     public static TextureRegion attackButton;
+    
     public static TextureRegion verticalSword;
     public static TextureRegion horizontalSword;
-    //public static Animation squirrelFly;
+    
     public static TextureRegion platform;
 	public static TextureRegion vPlatform;
 	public static TextureRegion shortPlatform;
-    //public static Animation brakingPlatform;    
+	public static TextureRegion bridgeTile;
+	public static TextureRegion dirtTile;
+	public static TextureRegion grassTile;
+	public static TextureRegion waterTile;
+	public static TextureRegion solidWaterTile;
+	
     public static Font font;
     
     //public static Music music;
@@ -106,11 +115,11 @@ public class Assets {
         platform = new TextureRegion(items, 0, 0, 160, 32);
 		vPlatform = new TextureRegion(items, 64, 32, 32, 96);
 		shortPlatform = new TextureRegion(items, 96, 32, 64, 32);
-        //brakingPlatform = new Animation(0.2f,
-        //                             new TextureRegion(items, 64, 160, 64, 16),
-        //                             new TextureRegion(items, 64, 176, 64, 16),
-        //                             new TextureRegion(items, 64, 192, 64, 16),
-        //                             new TextureRegion(items, 64, 208, 64, 16));
+		bridgeTile = new TextureRegion(items, 128, 228, 32, 32);
+		dirtTile = new TextureRegion(items, 0, 32, 32, 32);
+		grassTile = new TextureRegion(items, 0, 64, 32, 32);
+		waterTile = new TextureRegion(items, 32, 32, 32, 32);
+		solidWaterTile = new TextureRegion(items, 32, 64, 32, 32);
         
         joyStick = new TextureRegion(items, 448, 0, 64, 64);
         jumpButton = new TextureRegion(items, 448, 64, 64, 64);

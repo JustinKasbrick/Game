@@ -38,6 +38,7 @@ public class GameScreen extends GLScreen {
     SpriteBatcher batcher;    
     World world;
 	Level level;
+	Level tileLevel;
     WorldListener worldListener;
     WorldRenderer renderer;    
     Rectangle pauseBounds;
@@ -57,11 +58,11 @@ public class GameScreen extends GLScreen {
     String scoreString;
 
     public GameScreen(Game game) {
-        super(game);
+    	super(game);
         state = GAME_READY;
         guiCam = new Camera2D(glGraphics, 800, 480);
         touchPoint = new Vector2();
-        batcher = new SpriteBatcher(glGraphics, 1000);
+        batcher = new SpriteBatcher(glGraphics, 6000);
         worldListener = new WorldListener() {
             public void jump() {            
                 //Assets.playSound(Assets.jumpSound);
@@ -84,7 +85,8 @@ public class GameScreen extends GLScreen {
 		for(int i=0; i<NUM_LEVELS; i++)
 			levelArray[i] = "Level" + (i+1) + ".txt";
         level = new Level(game.getFileIO(), levelArray[currentLevel++]);
-		world = new World(worldListener, level);
+        tileLevel = new Level(game.getFileIO(), "LevelOneA.txt");
+		world = new World(worldListener, level, tileLevel);
         renderer = new WorldRenderer(glGraphics, batcher, world);
         pauseBounds = new Rectangle(800- 64, 480- 64, 64, 64);
         resumeBounds = new Rectangle(400, 240 - 96, 192, 36);
@@ -244,7 +246,7 @@ public class GameScreen extends GLScreen {
             guiCam.touchToWorld(touchPoint);
             
             if(OverlapTester.pointInRectangle(attackBounds, touchPoint) && attack == false) {
-		        world = new World(worldListener, new Level(game.getFileIO(), levelArray[currentLevel++]));
+		        world = new World(worldListener, new Level(game.getFileIO(), levelArray[currentLevel++]), tileLevel);
 		        renderer = new WorldRenderer(glGraphics, batcher, world);
 		        world.score = lastScore;
 		        state = GAME_READY;

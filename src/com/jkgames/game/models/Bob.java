@@ -52,6 +52,10 @@ public class Bob extends DynamicGameObject{
 		
 		if(position.y < 1)
 			position.y = 1;
+		if(position.y > 24)
+			position.y = 24;
+		if(position.x<1)
+			position.x = 1;
 		
 			
         bounds.lowerLeft.set(position).sub(bounds.width / 2, bounds.height / 2);

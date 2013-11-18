@@ -13,6 +13,7 @@ import com.jkgames.game.models.BridgeSwitch;
 import com.jkgames.game.models.Castle;
 import com.jkgames.game.models.CollectorCoin;
 import com.jkgames.game.models.DrawBridge;
+import com.jkgames.game.models.Tile;
 import com.jkgames.game.models.ZombieBob;
 import com.jkgames.game.models.Platform;
 import com.jkgames.game.models.Sword;
@@ -35,14 +36,26 @@ public class WorldRenderer {
     }
     
     public void render() {
-        if(world.bob.position.x > 7.5 )
-        	cam.position.x = world.bob.position.x;
+        if(world.bob.position.x > cam.frustumWidth/2 )
+        {
+        	if(world.bob.position.x > World.WORLD_WIDTH-(cam.frustumWidth/2)-1 )
+        		cam.position.x = World.WORLD_WIDTH-(cam.frustumWidth/2)-1;
+        	else
+        		cam.position.x = world.bob.position.x;
+        }
         else
-        	cam.position.x = 7.5f;
-        if(world.bob.position.y >= cam.frustumHeight / 2)
-        	cam.position.y = world.bob.position.y;
+        	cam.position.x = (cam.frustumWidth/2)+0.5f;
+        
+        if(world.bob.position.y > cam.frustumHeight/2 )
+        {
+        	if(world.bob.position.y > World.WORLD_HEIGHT-(cam.frustumHeight/2)-1 )
+        		cam.position.y = World.WORLD_HEIGHT-(cam.frustumHeight/2)-1;
+        	else
+        		cam.position.y = world.bob.position.y;
+        }
         else
-        	cam.position.y = cam.frustumHeight / 2;
+        	cam.position.y = (cam.frustumHeight/2)+0.5f;
+        
         cam.setViewportAndMatrices();
         renderBackground();
         renderObjects();
@@ -62,19 +75,30 @@ public class WorldRenderer {
         gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
         
         batcher.beginBatch(Assets.items);
+        renderTiles();
         renderBob();
-        renderPlatforms();
-		renderVerticalPlatforms();
+        //renderPlatforms();
+		//renderVerticalPlatforms();
         renderCollectorCoins();
-        renderDrawBridge();
-        renderBridgeSwitch();
-        renderEvilBobs();
+        //renderDrawBridge();
+        //renderBridgeSwitch();
+        //renderEvilBobs();
         renderCastle();
         batcher.endBatch();
         gl.glDisable(GL10.GL_BLEND);
     }
 
-    private void renderBridgeSwitch() {
+    private void renderTiles() {
+		for(int i=(int)(cam.position.y-(cam.frustumHeight/2)); i<(int)(cam.position.y+(cam.frustumHeight/2)+1); i++)
+			for(int j=(int)(cam.position.x-(cam.frustumWidth/2)); j<(int)(cam.position.x+(cam.frustumWidth/2)+1); j++)
+			{
+				if(world.tileArray[i][j].type != Tile.TILE_TYPE_NONE)
+					batcher.drawSprite(j+0.5f, i+0.5f, 1, 1, world.tileArray[i][j].getTexture());
+			}
+		
+	}
+
+	private void renderBridgeSwitch() {
     	int len = world.bridgeSwitches.size();
         for(int i = 0; i < len; i++) {
         	BridgeSwitch bridgeSwitch = world.bridgeSwitches.get(i);
@@ -115,7 +139,7 @@ public class WorldRenderer {
         //    break;
         //case Bob.BOB_STATE_HIT:
         //default:
-        //    keyFrame = Assets.bobHit;                       
+        //    keyFrame = Assets.bobHit;
         //}
         
         float side = world.bob.velocity.x < 0? -1: 1;

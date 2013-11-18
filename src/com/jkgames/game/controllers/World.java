@@ -15,6 +15,7 @@ import com.jkgames.game.models.BridgeSwitch;
 import com.jkgames.game.models.Castle;
 import com.jkgames.game.models.CollectorCoin;
 import com.jkgames.game.models.DrawBridge;
+import com.jkgames.game.models.Tile;
 import com.jkgames.game.models.ZombieBob;
 import com.jkgames.game.models.Level;
 import com.jkgames.game.models.Platform;
@@ -29,8 +30,8 @@ public class World {
         public void coin();
     }
 
-    public static final int WORLD_WIDTH = 100;
-    public static final int WORLD_HEIGHT = 15;    
+    public static final int WORLD_WIDTH = 200;
+    public static final int WORLD_HEIGHT = 25;    
     public static final int WORLD_STATE_RUNNING = 0;
     public static final int WORLD_STATE_NEXT_LEVEL = 1;
     public static final int WORLD_STATE_GAME_OVER = 2;
@@ -59,12 +60,14 @@ public class World {
     public int score;
     public int state;
 	Level level;
+	Level tileLevel;
+	
     SpatialHashGrid grid;
-    public int tileArray[][];
+    public Tile tileArray[][];
 
-    public World(WorldListener listener, Level level) {
+    public World(WorldListener listener, Level level, Level tileLevel) {
     	grid = new SpatialHashGrid(WORLD_WIDTH, WORLD_HEIGHT, 25f);
-    	tileArray = new int[WORLD_WIDTH][WORLD_HEIGHT];
+    	tileArray = new Tile[WORLD_HEIGHT][WORLD_WIDTH];
     	this.bob = new Bob(0, 0);
 		this.bobSword = new Sword(0, 0);
         this.platforms = new ArrayList<Platform>();
@@ -75,6 +78,7 @@ public class World {
 		this.bridgeSwitches = new ArrayList<BridgeSwitch>();
         this.listener = listener;
 		this.level = level;
+		this.tileLevel = tileLevel;
         rand = new Random();
         generateLevel();
         
@@ -84,62 +88,77 @@ public class World {
     }
 
     private void generateLevel() {
+    	// read in tiles
+    	int start = 0;
+    	for(int i=24; i>-1; i--)
+    	{
+    		for(int j=0; j<WORLD_WIDTH; j++)
+    		{
+    			tileArray[i][j] = new Tile(j+0.5f, i+0.5f, 1, 1, Integer.parseInt(tileLevel.text.substring(start, start+2)));
+    			start += 2;
+    		}
+    	}
+    	
 		// read all regular platforms
-		int numObjs = Integer.parseInt(level.text.substring(2, 4));
-		int start = level.text.indexOf("rp")+3;
-		for(int i = 0; i<numObjs; i++)
-		{			
-			platforms.add(new Platform(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10))));
-			start += 12;
-		}
-		
-        for(int i=0; i<numObjs; i++)
-        {
-        	Platform p = platforms.get(i);
-        	grid.insertStaticObject(platforms.get(i));
-        	tileArray[(int)p.position.x - 2][(int)p.position.y] = WORLD_TILE_PLATFORM;
-        	tileArray[(int)p.position.x - 1][(int)p.position.y] = WORLD_TILE_PLATFORM;
-        	tileArray[(int)p.position.x][(int)p.position.y] = WORLD_TILE_PLATFORM;
-        	tileArray[(int)p.position.x + 1][(int)p.position.y] = WORLD_TILE_PLATFORM;
-        	tileArray[(int)p.position.x + 2][(int)p.position.y] = WORLD_TILE_PLATFORM;
-        }
+//		int numObjs = Integer.parseInt(level.text.substring(2, 4));
+//		int start = level.text.indexOf("rp")+3;
+//		for(int i = 0; i<numObjs; i++)
+//		{			
+//			platforms.add(new Platform(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10))));
+//			start += 12;
+//		}
+//		
+//        for(int i=0; i<numObjs; i++)
+//        {
+//        	Platform p = platforms.get(i);
+//        	grid.insertStaticObject(platforms.get(i));
+//        	tileArray[(int)p.position.x - 2][(int)p.position.y] = WORLD_TILE_PLATFORM;
+//        	tileArray[(int)p.position.x - 1][(int)p.position.y] = WORLD_TILE_PLATFORM;
+//        	tileArray[(int)p.position.x][(int)p.position.y] = WORLD_TILE_PLATFORM;
+//        	tileArray[(int)p.position.x + 1][(int)p.position.y] = WORLD_TILE_PLATFORM;
+//        	tileArray[(int)p.position.x + 2][(int)p.position.y] = WORLD_TILE_PLATFORM;
+//        }
         
+		
+		
         // read all vertical platforms
-		numObjs = Integer.parseInt(level.text.substring(7, 9));
-		start = level.text.indexOf("vp")+3;
-		for(int i = 0; i<numObjs; i++)
-		{			
-			vPlatforms.add(new VerticalPlatform(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10))));
-			start += 12;
-		}
-		
-        for(int i=0; i<numObjs; i++)
-        {
-        	
-        	grid.insertStaticObject(vPlatforms.get(i));
-        	
-        }
-		
-		bob.position.x = platforms.get(0).position.x;
-		bob.position.y = platforms.get(0).position.y + platforms.get(0).bounds.height/2 + bob.bounds.height/2;
+//		numObjs = Integer.parseInt(level.text.substring(7, 9));
+//		start = level.text.indexOf("vp")+3;
+//		for(int i = 0; i<numObjs; i++)
+//		{			
+//			vPlatforms.add(new VerticalPlatform(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10))));
+//			start += 12;
+//		}
+//		
+//        for(int i=0; i<numObjs; i++)
+//        {
+//        	
+//        	grid.insertStaticObject(vPlatforms.get(i));
+//        	
+//        }
+//		
+//		bob.position.x = tileArray[1][1].position.x;
+//		bob.position.y = tileArray[1][1].position.y + tileArray[1][1].bounds.height/2 + bob.bounds.height/2;
+    	bob.position.x = 1;
+    	bob.position.y = 15;
 		bobSword.position.x = bob.position.x;
 		bobSword.position.y = bob.position.y + 0.2f;
-		
-		// read all zombie bobs
-		numObjs = Integer.parseInt(level.text.substring(12, 14));
-		start = level.text.indexOf("eb")+3;
-		for(int i = 0; i<numObjs; i++)
-		{			
-			zombieBobs.add(new ZombieBob(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10)),
-			Float.parseFloat(level.text.substring(start+12, start+16)), Float.parseFloat(level.text.substring(start+18, start+22))));
-			start += 24;
-		}
-		
-        for(int i=0; i<numObjs; i++)
-        	grid.insertDynamicObject(zombieBobs.get(i));
-        
-        // read all collector coins (there is always exactly 3)
-        numObjs = 3;
+//		
+//		// read all zombie bobs
+//		numObjs = Integer.parseInt(level.text.substring(12, 14));
+//		start = level.text.indexOf("eb")+3;
+//		for(int i = 0; i<numObjs; i++)
+//		{			
+//			zombieBobs.add(new ZombieBob(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10)),
+//			Float.parseFloat(level.text.substring(start+12, start+16)), Float.parseFloat(level.text.substring(start+18, start+22))));
+//			start += 24;
+//		}
+//		
+//        for(int i=0; i<numObjs; i++)
+//        	grid.insertDynamicObject(zombieBobs.get(i));
+//        
+//        // read all collector coins (there is always exactly 3)
+        int numObjs = 3;
 		start = level.text.indexOf("cc")+3;
 		for(int i = 0; i<numObjs; i++)
 		{			
@@ -149,29 +168,29 @@ public class World {
 		
         for(int i=0; i<numObjs; i++)
         	grid.insertStaticObject(collectorCoins.get(i));
-        
-        // read all drawbridges
-        numObjs = Integer.parseInt(level.text.substring(17, 19));
-		start = level.text.indexOf("db")+3;
-		for(int i = 0; i<numObjs; i++)
-		{			
-			drawBridges.add(new DrawBridge(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10))));
-			start += 12;
-		}
-		
-        for(int i=0; i<numObjs; i++)
-        	grid.insertDynamicObject(drawBridges.get(i));
-        
-        // read all drawbridge switches (same amount as bridges)
-        start = level.text.indexOf("sw")+3;
-		for(int i = 0; i<numObjs; i++)
-		{			
-			bridgeSwitches.add(new BridgeSwitch(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10))));
-			start += 12;
-		}
-		
-        for(int i=0; i<numObjs; i++)
-        	grid.insertStaticObject(bridgeSwitches.get(i));
+//        
+//        // read all drawbridges
+////        numObjs = Integer.parseInt(level.text.substring(17, 19));
+////		start = level.text.indexOf("db")+3;
+////		for(int i = 0; i<numObjs; i++)
+////		{			
+////			drawBridges.add(new DrawBridge(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10))));
+////			start += 12;
+////		}
+////		
+////        for(int i=0; i<numObjs; i++)
+////        	grid.insertDynamicObject(drawBridges.get(i));
+//        
+//        // read all drawbridge switches (same amount as bridges)
+//        start = level.text.indexOf("sw")+3;
+//		for(int i = 0; i<numObjs; i++)
+//		{			
+//			bridgeSwitches.add(new BridgeSwitch(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10))));
+//			start += 12;
+//		}
+//		
+//        for(int i=0; i<numObjs; i++)
+//        	grid.insertStaticObject(bridgeSwitches.get(i));
         
         // read Castle (there is only 1 castle in each level)
 		start = level.text.indexOf("ca")+3;
@@ -181,14 +200,14 @@ public class World {
 
     public void update(float deltaTime, float accelX, boolean jump, boolean attack) 
     {
-    	drawBridges.get(0).Update(deltaTime);
+    	//drawBridges.get(0).Update(deltaTime);
         updateBob(deltaTime, accelX, jump, attack);
-        updateEvilbobs(deltaTime);
+        //updateEvilbobs(deltaTime);
         if (bob.state != Bob.BOB_STATE_HIT)
         {
         	checkPlatformCollisions();
             //checkCollisions();
-            checkCollisions2();
+            //checkCollisions2();
         }
 		
         updateBobWeapon(deltaTime, attack);
@@ -325,23 +344,53 @@ public class World {
     private void checkPlatformCollisions() {
     	int x = (int)bob.bounds.lowerLeft.x;
     	int y = (int)bob.bounds.lowerLeft.y;
-    	if(tileArray[x][y] == WORLD_TILE_PLATFORM)
+    	if(tileArray[y][x].collidable)
     	{
     		checkCollisionPoints(x, y);
+//    		checkCollision(x, y);
     	}
-    	if(tileArray[x][y+1] == WORLD_TILE_PLATFORM)
-    	{
-    		checkCollisionPoints(x, y+1);
-    	}
-    	if(tileArray[x+1][y] == WORLD_TILE_PLATFORM)
+    	if(tileArray[y][x+1].collidable)
     	{
     		checkCollisionPoints(x+1, y);
+//    		checkCollision(x+1, y);
     	}
-    	if(tileArray[x+1][y+1] == WORLD_TILE_PLATFORM)
+    	if(tileArray[y+1][x].collidable)
+    	{
+    		checkCollisionPoints(x, y+1);
+//    		checkCollision(x, y+1);
+    	}
+    	if(tileArray[y+1][x+1].collidable)
     	{
     		checkCollisionPoints(x+1, y+1);
+//    		checkCollision(x+1, y+1);
     	}
     }
+
+	private void checkCollision(int x, int y) {
+		if(bob.velocity.y > 0)
+		{
+			if(bob.position.y > tileArray[y][x].position.y-0.5-0.4)
+			{
+				bob.position.y = tileArray[y][x].position.y-0.5f-0.4f;
+				bob.velocity.y = 0;
+			}
+		}
+		else if(bob.velocity.y < 0)
+		{
+			if(bob.position.y < tileArray[y][x].position.y+0.5+0.4)
+			{
+				bob.position.y = tileArray[y][x].position.y+0.5f+0.4f;
+				bob.velocity.y = 0;
+			}
+		}
+		
+		if(bob.velocity.x > 0)
+			if(bob.position.x > tileArray[y][x].position.x-0.5-0.4 )
+				bob.position.x = tileArray[y][x].position.x-0.5f-0.4f ;
+		else if(bob.velocity.x < 0)	
+			if(bob.position.x < tileArray[y][x].position.x+0.5f+0.4f)
+				bob.position.x = tileArray[y][x].position.x+0.5f+0.4f;
+	}
 
 	private void checkCollisionPoints(int x, int y) {
 		
