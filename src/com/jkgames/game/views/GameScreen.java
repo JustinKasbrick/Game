@@ -87,8 +87,9 @@ public class GameScreen extends GLScreen {
 			levelArray[i] = "Level" + (i+1) + ".txt";
         level = new Level(game.getFileIO(), levelArray[currentLevel++]);
         tileLevel = new Level(game.getFileIO(), "LevelOneA.txt");
-		world = new World(worldListener, level, tileLevel);
+		world = new World(worldListener, level, tileLevel, currentLevel);
         renderer = new WorldRenderer(glGraphics, batcher, world);
+        
         pauseBounds = new Rectangle(800- 64, 480- 64, 64, 64);
         resumeBounds = new Rectangle(400, 240 - 96, 192, 36);
         quitBounds = new Rectangle(240 - 36, 400 - 96, 192, 36);
@@ -98,6 +99,7 @@ public class GameScreen extends GLScreen {
         scoreString = "score: 0";
 		jump = false;
 		attack = false;
+		
 		joyStickLocation = new Vector2(JOY_STICK_ORIGIN.x, JOY_STICK_ORIGIN.y);
 		joyStickBounds = new Rectangle(JOY_STICK_ORIGIN.x - 64, JOY_STICK_ORIGIN.y - 64, 128, 128);
 		joyStickId = -1;
@@ -249,10 +251,10 @@ public class GameScreen extends GLScreen {
             guiCam.touchToWorld(touchPoint);
             
             if(OverlapTester.pointInRectangle(attackBounds, touchPoint) && attack == false) {
-		        world = new World(worldListener, new Level(game.getFileIO(), levelArray[currentLevel++]), tileLevel);
+		        world = new World(worldListener, new Level(game.getFileIO(), levelArray[currentLevel]), tileLevel, currentLevel);
 		        renderer = new WorldRenderer(glGraphics, batcher, world);
 		        world.score = lastScore;
-		        state = GAME_READY;
+		        state = GAME_READY;		        
             }
         }
     }
@@ -340,6 +342,7 @@ public class GameScreen extends GLScreen {
     public void pause() {
         if(state == GAME_RUNNING)
             state = GAME_PAUSED;
+        Settings.save(game.getFileIO());
     }
 
     @Override

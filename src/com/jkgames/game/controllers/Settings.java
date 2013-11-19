@@ -7,11 +7,13 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 import com.badlogic.androidgames.framework.FileIO;
+import com.jkgames.game.models.GameState;
 
 public class Settings 
 {
 	public static boolean soundEnabled = false;
 	public static int[] highscores = new int[] { 100, 80, 50, 30, 10 };
+	public static GameState gameState = new GameState(1);
 	
 	public static void load(FileIO files) 
 	{
@@ -23,6 +25,11 @@ public class Settings
 			soundEnabled = Boolean.parseBoolean(in.readLine());
 			for (int i = 0; i < 5; i++) {
 				highscores[i] = Integer.parseInt(in.readLine());
+			}
+			for(int i = 0; i < 1; i++)
+			{
+				for (int j = 0; j < 4; j++)
+					gameState.levelArray[i][j] = Integer.parseInt(in.readLine());
 			}
 		} 
 		catch (IOException e) {
@@ -49,10 +56,17 @@ public class Settings
 		try 
 		{
 			out = new BufferedWriter(new OutputStreamWriter(
-			files.writeFile(".snake")));
+			files.writeFile(".game")));
 			out.write(Boolean.toString(soundEnabled));
 			for (int i = 0; i < 5; i++) {
-				out.write(Integer.toString(highscores[i]));
+				out.write(Integer.toString(highscores[i]) + "\n");
+			}
+			for (int i = 0; i < 1; i++)
+			{
+				for (int j = 0; j < 4; j++)
+				{
+					out.write(Integer.toString(gameState.levelArray[i][j]) + "\n");
+				}
 			}
 		} 
 		catch (IOException e) 
@@ -83,4 +97,5 @@ public class Settings
 			}
 		}
 	}
+	
 }

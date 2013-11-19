@@ -15,6 +15,7 @@ import com.jkgames.game.models.BridgeSwitch;
 import com.jkgames.game.models.Castle;
 import com.jkgames.game.models.CollectorCoin;
 import com.jkgames.game.models.DrawBridge;
+import com.jkgames.game.models.GameState;
 import com.jkgames.game.models.Tile;
 import com.jkgames.game.models.TileFactory;
 import com.jkgames.game.models.ZombieBob;
@@ -66,8 +67,10 @@ public class World {
     SpatialHashGrid grid;
     public int tileArray[][];
     public TileFactory tileFactory;
+    public String saveFile;
+    int currentLevel;
     
-    public World(WorldListener listener, Level level, Level tileLevel) {
+    public World(WorldListener listener, Level level, Level tileLevel, int curLevel) {
     	grid = new SpatialHashGrid(WORLD_WIDTH, WORLD_HEIGHT, 25f);
     	tileArray = new int[WORLD_HEIGHT][WORLD_WIDTH];
     	this.bob = new Bob(0, 0);
@@ -82,12 +85,14 @@ public class World {
 		this.level = level;
 		this.tileLevel = tileLevel;
 		this.tileFactory = new TileFactory();
+		currentLevel = curLevel;
         rand = new Random();
         generateLevel();
         
         this.heightSoFar = 0;
         this.score = 0;
         this.state = WORLD_STATE_RUNNING;
+        
     }
 
     private void generateLevel() {
@@ -127,12 +132,17 @@ public class World {
 		start = level.text.indexOf("cc")+3;
 		for(int i = 0; i<numObjs; i++)
 		{			
-			collectorCoins.add(new CollectorCoin(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10))));
+			collectorCoins.add(new CollectorCoin(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10)), i+1));
 			start += 12;
 		}
 		
         for(int i=0; i<numObjs; i++)
-        	grid.insertStaticObject(collectorCoins.get(i));
+        {
+        	if(Settings.gameState.levelArray[currentLevel-1][i] != 1)
+        		grid.insertStaticObject(collectorCoins.get(i));
+        	else
+        		collectorCoins.get(i).Collected = true;
+        }
 //        
 //        // read all drawbridges
 ////        numObjs = Integer.parseInt(level.text.substring(17, 19));
@@ -281,6 +291,7 @@ public class World {
     				//increase score
     				grid.removeObject(collider);
     				((CollectorCoin) collider).Collected = true;
+    				Settings.gameState.updateLevelCoinState(currentLevel-1, ((CollectorCoin) collider).orderInLevel, 1);
     			}
     			else if(collider instanceof BridgeSwitch)
     			{

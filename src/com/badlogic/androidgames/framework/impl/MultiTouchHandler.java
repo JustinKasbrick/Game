@@ -3,7 +3,7 @@ package com.badlogic.androidgames.framework.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.annotation.TargetApi;
+
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -11,7 +11,7 @@ import com.badlogic.androidgames.framework.Input.TouchEvent;
 import com.badlogic.androidgames.framework.Pool;
 import com.badlogic.androidgames.framework.Pool.PoolObjectFactory;
 
-@TargetApi(5)
+
 public class MultiTouchHandler implements TouchHandler {
     private static final int MAX_TOUCHPOINTS = 10;
 	
