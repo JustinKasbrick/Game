@@ -14,11 +14,8 @@ import com.jkgames.game.models.Castle;
 import com.jkgames.game.models.CollectorCoin;
 import com.jkgames.game.models.DrawBridge;
 import com.jkgames.game.models.GameTile;
-import com.jkgames.game.models.Tile;
 import com.jkgames.game.models.ZombieBob;
-import com.jkgames.game.models.Platform;
 import com.jkgames.game.models.Sword;
-import com.jkgames.game.models.VerticalPlatform;
 import com.jkgames.game.models.Assets;
 
 public class WorldRenderer {
@@ -143,42 +140,20 @@ public class WorldRenderer {
         //    keyFrame = Assets.bobHit;
         //}
         
-        float side = world.bob.velocity.x < 0? -1: 1;
-        batcher.drawSprite(world.bob.position.x, world.bob.position.y, side * Bob.BOB_WIDTH, Bob.BOB_HEIGHT, Assets.bob);
+        batcher.drawSprite(world.bob.position.x, world.bob.position.y, world.bob.direction * Bob.BOB_WIDTH, Bob.BOB_HEIGHT, Assets.bob);
         
         //if(world.bob.isAttacking)
         	keyFrame = Assets.bobSwordAttack.getKeyFrame(world.bobSword.getStateTime(), Animation.ANIMATION_NONLOOPING);
        // else
         	//keyFrame = Assets.verticalSword;
-        
-        batcher.drawSprite(world.bobSword.position.x, world.bobSword.position.y, side * Sword.SWORD_WIDTH, Sword.SWORD_HEIGHT, keyFrame);
-        
-    }
-    
 
-    private void renderPlatforms() {
-        int len = world.platforms.size();
-        for(int i = 0; i < len; i++) {
-            Platform platform = world.platforms.get(i);
-            TextureRegion keyFrame = Assets.platform;
-            //if(platform.state == Platform.PLATFORM_STATE_PULVERIZING) {                
-            //    keyFrame = Assets.brakingPlatform.getKeyFrame(platform.stateTime, Animation.ANIMATION_NONLOOPING);
-            //}            
-                                   
-            batcher.drawSprite(platform.position.x, platform.position.y, 
-                               5, 1, keyFrame);            
-        }
-    }
-	
-	private void renderVerticalPlatforms()
-	{
-		int len = world.vPlatforms.size();
-        for(int i = 0; i < len; i++) 
+		if(world.bobSword.stateTime < 0.2f && world.bobSword.stateTime >= 0)
 		{
-			VerticalPlatform vPlatform = world.vPlatforms.get(i);
-				batcher.drawSprite(vPlatform.position.x, vPlatform.position.y, 1, 3, Assets.vPlatform); 
+			world.bobSword.position.x += (0.5 * world.bob.direction);
 		}
-	}
+        batcher.drawSprite(world.bobSword.position.x, world.bobSword.position.y, world.bob.direction * Sword.SWORD_WIDTH, Sword.SWORD_HEIGHT, keyFrame);
+        
+    }
     //private void renderItems() {
     //    int len = world.springs.size();
     //    for(int i = 0; i < len; i++) {

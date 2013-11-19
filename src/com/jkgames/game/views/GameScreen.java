@@ -18,6 +18,7 @@ import com.jkgames.game.controllers.World;
 import com.jkgames.game.controllers.Settings;
 import com.jkgames.game.controllers.WorldRenderer;
 
+import com.jkgames.game.models.Bob;
 import com.jkgames.game.models.Level;
 import com.jkgames.game.models.Assets;
 
@@ -137,7 +138,8 @@ public class GameScreen extends GLScreen {
         int len = touchEvents.size();
         for(int i = 0; i < len; i++) {
             TouchEvent event = touchEvents.get(i);
-            
+            touchPoint.set(event.x, event.y);
+			guiCam.touchToWorld(touchPoint);
 			if(event.type == TouchEvent.TOUCH_UP)
 			{	if(event.pointer == joyStickId)
 				{
@@ -151,8 +153,7 @@ public class GameScreen extends GLScreen {
 				//if(event.type != TouchEvent.TOUCH_UP)
 				//    continue;
 				
-				touchPoint.set(event.x, event.y);
-				guiCam.touchToWorld(touchPoint);
+				
 				
 				//if(event.type == TouchEvent.TOUCH_DOWN)
 				//{
@@ -179,7 +180,9 @@ public class GameScreen extends GLScreen {
 				
 				if(OverlapTester.pointInRectangle(jumpBounds, touchPoint) && jump == false) {
 					//Assets.playSound(Assets.clickSound);
-					jump = true;
+					if(world.bob.state != Bob.BOB_STATE_JUMP
+							&& world.bob.state != Bob.BOB_STATE_FALL)
+						jump = true;
 				}
 				if(OverlapTester.pointInRectangle(attackBounds, touchPoint) && attack == false) {
 					//Assets.playSound(Assets.clickSound);

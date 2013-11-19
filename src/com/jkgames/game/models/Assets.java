@@ -99,7 +99,7 @@ public class Assets {
 									new TextureRegion(items, 129, 194, 32, 33),
         							//new TextureRegion(items, 161, 193, 33, 33),
         							//new TextureRegion(items, 194, 193, 33, 33),
-        							new TextureRegion(items, 229, 194, 32, 33),
+        							new TextureRegion(items, 230, 194, 32, 33),
         							new TextureRegion(items, 129, 194, 32, 33));
         bob = new TextureRegion(items, 419, 1, 28, 30);
         bob_wSword = new TextureRegion(items, 385, 128, 56, 55);

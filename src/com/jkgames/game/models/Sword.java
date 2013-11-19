@@ -31,9 +31,6 @@ public class Sword extends GameObject
 			state = SWORD_STATE_IDOL;
 		}
 		
-		if(stateTime < 0.2f && stateTime >= 0)
-			this.position.x += .5;
-			
 		bounds.lowerLeft.set(position).sub(bounds.width / 2, bounds.height / 2);
 		stateTime += deltaTime;
 	}

@@ -101,44 +101,6 @@ public class World {
     			start += 2;
     		}
     	}
-    	
-		// read all regular platforms
-//		int numObjs = Integer.parseInt(level.text.substring(2, 4));
-//		int start = level.text.indexOf("rp")+3;
-//		for(int i = 0; i<numObjs; i++)
-//		{			
-//			platforms.add(new Platform(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10))));
-//			start += 12;
-//		}
-//		
-//        for(int i=0; i<numObjs; i++)
-//        {
-//        	Platform p = platforms.get(i);
-//        	grid.insertStaticObject(platforms.get(i));
-//        	tileArray[(int)p.position.x - 2][(int)p.position.y] = WORLD_TILE_PLATFORM;
-//        	tileArray[(int)p.position.x - 1][(int)p.position.y] = WORLD_TILE_PLATFORM;
-//        	tileArray[(int)p.position.x][(int)p.position.y] = WORLD_TILE_PLATFORM;
-//        	tileArray[(int)p.position.x + 1][(int)p.position.y] = WORLD_TILE_PLATFORM;
-//        	tileArray[(int)p.position.x + 2][(int)p.position.y] = WORLD_TILE_PLATFORM;
-//        }
-        
-		
-		
-        // read all vertical platforms
-//		numObjs = Integer.parseInt(level.text.substring(7, 9));
-//		start = level.text.indexOf("vp")+3;
-//		for(int i = 0; i<numObjs; i++)
-//		{			
-//			vPlatforms.add(new VerticalPlatform(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10))));
-//			start += 12;
-//		}
-//		
-//        for(int i=0; i<numObjs; i++)
-//        {
-//        	
-//        	grid.insertStaticObject(vPlatforms.get(i));
-//        	
-//        }
 //		
 //		bob.position.x = tileArray[1][1].position.x;
 //		bob.position.y = tileArray[1][1].position.y + tileArray[1][1].bounds.height/2 + bob.bounds.height/2;
@@ -209,8 +171,7 @@ public class World {
         if (bob.state != Bob.BOB_STATE_HIT)
         {
         	checkPlatformCollisions();
-            //checkCollisions();
-            //checkCollisions2();
+            checkCollisions();
         }
 		
         updateBobWeapon(deltaTime, attack);
@@ -218,11 +179,6 @@ public class World {
         	checkWeaponCollisions(bobSword);
         checkGameOver();
     }
-
-    private void checkCollisions2() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	private void checkWeaponCollisions(Sword weapon) {
 		// TODO create bad guy abstract class
@@ -369,32 +325,6 @@ public class World {
     	}
     }
 
-	private void checkCollision(int x, int y) {
-		if(bob.velocity.y > 0)
-		{
-			if(bob.position.y > y-0.5-0.4)
-			{
-				bob.position.y = y-0.5f-0.4f;
-				bob.velocity.y = 0;
-			}
-		}
-		else if(bob.velocity.y < 0)
-		{
-			if(bob.position.y < y+0.5+0.4)
-			{
-				bob.position.y = y+0.5f+0.4f;
-				bob.velocity.y = 0;
-			}
-		}
-		
-		if(bob.velocity.x > 0)
-			if(bob.position.x > x-0.5-0.4 )
-				bob.position.x = x-0.5f-0.4f ;
-		else if(bob.velocity.x < 0)	
-			if(bob.position.x < x+0.5f+0.4f)
-				bob.position.x = x+0.5f+0.4f;
-	}
-
 	private void checkCollisionPoints(int x, int y) {
 		
 		if(bob.velocity.y < 0)
@@ -408,6 +338,7 @@ public class World {
 			{
 				bob.velocity.y = 0;
 				bob.position.y = y+1+(bob.bounds.height/2);
+				bob.state = Bob.BOB_STATE_STAND;
 			}
 		}
 		else if(bob.velocity.y > 0)
