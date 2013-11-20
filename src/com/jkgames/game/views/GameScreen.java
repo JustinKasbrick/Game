@@ -31,17 +31,20 @@ public class GameScreen extends GLScreen {
 	static final int NUM_LEVELS = 2;
     static final Vector2 JOY_STICK_ORIGIN = new Vector2(154, 96);
     
+    float alpha = 1;
     int state;
 	int currentLevel;
 	String[] levelArray;
     Camera2D guiCam;
     Vector2 touchPoint;
-    SpriteBatcher batcher;    
+    SpriteBatcher batcher;
+    SpriteBatcher alphaBatcher;
     World world;
 	Level level;
 	Level tileLevel;
     WorldListener worldListener;
-    WorldRenderer renderer;    
+    WorldRenderer renderer;
+    WorldRenderer alphaRenderer;
     Rectangle pauseBounds;
     Rectangle resumeBounds;
     Rectangle quitBounds;
@@ -64,6 +67,7 @@ public class GameScreen extends GLScreen {
         guiCam = new Camera2D(glGraphics, 800, 480);
         touchPoint = new Vector2();
         batcher = new SpriteBatcher(glGraphics, 6000);
+        alphaBatcher = new SpriteBatcher(glGraphics, 100, true);
         worldListener = new WorldListener() {
             public void jump() {            
                 //Assets.playSound(Assets.jumpSound);
@@ -89,6 +93,7 @@ public class GameScreen extends GLScreen {
         tileLevel = new Level(game.getFileIO(), "LevelOneA.txt");
 		world = new World(worldListener, level, tileLevel, currentLevel);
         renderer = new WorldRenderer(glGraphics, batcher, world);
+        alphaRenderer = new WorldRenderer(glGraphics, alphaBatcher, world);
         
         pauseBounds = new Rectangle(800- 64, 480- 64, 64, 64);
         resumeBounds = new Rectangle(400, 240 - 96, 192, 36);
@@ -278,6 +283,9 @@ public class GameScreen extends GLScreen {
         
         renderer.render();
         
+        if(alpha > 0)
+        	alphaRenderer.renderBob(alpha);
+        alpha -= 0.01;
         guiCam.setViewportAndMatrices();
         gl.glEnable(GL10.GL_BLEND);
         gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);

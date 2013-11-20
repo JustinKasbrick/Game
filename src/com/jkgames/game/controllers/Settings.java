@@ -26,17 +26,22 @@ public class Settings
 			for (int i = 0; i < 5; i++) {
 				highscores[i] = Integer.parseInt(in.readLine());
 			}
+			int temp;
 			for(int i = 0; i < 1; i++)
 			{
+				temp =  Integer.parseInt(in.readLine());
 				for (int j = 0; j < 4; j++)
-					gameState.levelArray[i][j] = Integer.parseInt(in.readLine());
+				{
+					gameState.levelArray[i][j] = temp % 10;
+				}
+					//gameState.levelArray[i][j] = Integer.parseInt(in.readLine());
 			}
 		} 
 		catch (IOException e) {
-			// :( It's ok we have defaults
+			// :( It's OK we have defaults
 		} 
 		catch (NumberFormatException e) {
-			// :/ It's ok, defaults save our day
+			// :/ It's OK, defaults save our day
 		} 
 		finally 
 		{
@@ -57,16 +62,22 @@ public class Settings
 		{
 			out = new BufferedWriter(new OutputStreamWriter(
 			files.writeFile(".game")));
+			
+			// write sound settings
 			out.write(Boolean.toString(soundEnabled));
+			
+			// write high scores
 			for (int i = 0; i < 5; i++) {
 				out.write(Integer.toString(highscores[i]) + "\n");
 			}
+			// write level state
 			for (int i = 0; i < 1; i++)
 			{
 				for (int j = 0; j < 4; j++)
 				{
-					out.write(Integer.toString(gameState.levelArray[i][j]) + "\n");
+					out.write(Integer.toString(gameState.levelArray[i][j]));
 				}
+				out.write("\n");
 			}
 		} 
 		catch (IOException e) 
