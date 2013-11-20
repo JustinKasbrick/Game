@@ -106,14 +106,14 @@ public class World {
     			start += 2;
     		}
     	}
-//		
+
 //		bob.position.x = tileArray[1][1].position.x;
 //		bob.position.y = tileArray[1][1].position.y + tileArray[1][1].bounds.height/2 + bob.bounds.height/2;
     	bob.position.x = 1;
     	bob.position.y = 15;
 		bobSword.position.x = bob.position.x;
 		bobSword.position.y = bob.position.y + 0.2f;
-//		
+
 //		// read all zombie bobs
 //		numObjs = Integer.parseInt(level.text.substring(12, 14));
 //		start = level.text.indexOf("eb")+3;
@@ -126,8 +126,8 @@ public class World {
 //		
 //        for(int i=0; i<numObjs; i++)
 //        	grid.insertDynamicObject(zombieBobs.get(i));
-//        
-//        // read all collector coins (there is always exactly 3)
+
+        // read all collector coins (there is always exactly 3)
         int numObjs = 3;
 		start = level.text.indexOf("cc")+3;
 		for(int i = 0; i<numObjs; i++)
@@ -143,18 +143,18 @@ public class World {
         	else
         		collectorCoins.get(i).Collected = true;
         }
-//        
+
 //        // read all drawbridges
-////        numObjs = Integer.parseInt(level.text.substring(17, 19));
-////		start = level.text.indexOf("db")+3;
-////		for(int i = 0; i<numObjs; i++)
-////		{			
-////			drawBridges.add(new DrawBridge(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10))));
-////			start += 12;
-////		}
-////		
-////        for(int i=0; i<numObjs; i++)
-////        	grid.insertDynamicObject(drawBridges.get(i));
+//        numObjs = Integer.parseInt(level.text.substring(17, 19));
+//		start = level.text.indexOf("db")+3;
+//		for(int i = 0; i<numObjs; i++)
+//		{
+//			drawBridges.add(new DrawBridge(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10))));
+//			start += 12;
+//		}
+//
+//        for(int i=0; i<numObjs; i++)
+//        	grid.insertDynamicObject(drawBridges.get(i));
 //        
 //        // read all drawbridge switches (same amount as bridges)
 //        start = level.text.indexOf("sw")+3;
@@ -202,7 +202,6 @@ public class World {
 				{
 					if(OverlapTester.overlapRectangles(weapon.bounds, collider.bounds)) 
 		    		{
-						
 						((ZombieBob) collider).state = ZombieBob.ZOMBIE_BOB_STATE_HIT;
 						((ZombieBob) collider).velocity.x *= -1;
 						((ZombieBob) collider).velocity.y = ZombieBob.HIT_VELOCITY_Y;
