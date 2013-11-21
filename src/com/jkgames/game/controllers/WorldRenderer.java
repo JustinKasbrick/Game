@@ -24,7 +24,7 @@ public class WorldRenderer {
     GLGraphics glGraphics;
     World world;
     Camera2D cam;
-    SpriteBatcher batcher;    
+    SpriteBatcher batcher;
     
     public WorldRenderer(GLGraphics glGraphics, SpriteBatcher batcher, World world) {
         this.glGraphics = glGraphics;
@@ -74,7 +74,7 @@ public class WorldRenderer {
         
         batcher.beginBatch(Assets.items);
         renderTiles();
-        renderBob();
+        //renderBob();
         //renderPlatforms();
 		//renderVerticalPlatforms();
         renderCollectorCoins();
@@ -85,7 +85,18 @@ public class WorldRenderer {
         batcher.endBatch();
         gl.glDisable(GL10.GL_BLEND);
     }
-
+    public void renderBob(float alpha)
+    {
+    	GL10 gl = glGraphics.getGL();
+        gl.glEnable(GL10.GL_BLEND);
+        gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
+        batcher.beginBatch(Assets.items);
+        
+        batcher.drawSprite(world.bob.position.x, world.bob.position.y, world.bob.direction * Bob.BOB_WIDTH, Bob.BOB_HEIGHT, Assets.bob, alpha);
+        
+        batcher.endBatch();
+        gl.glDisable(GL10.GL_BLEND);
+    }
     private void renderTiles() {
 		for(int i=(int)(cam.position.y-(cam.frustumHeight/2)); i<(int)(cam.position.y+(cam.frustumHeight/2)+1); i++)
 			for(int j=(int)(cam.position.x-(cam.frustumWidth/2)); j<(int)(cam.position.x+(cam.frustumWidth/2)+1); j++)
