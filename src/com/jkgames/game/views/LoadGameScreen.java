@@ -33,7 +33,7 @@ public class LoadGameScreen extends GLScreen
 		super(game);
 		
 		guiCam = new Camera2D(glGraphics, 800, 480);
-        batcher = new SpriteBatcher(glGraphics, 100);
+        batcher = new SpriteBatcher(glGraphics, 100, false);
         //soundBounds = new Rectangle(0, 0, 64, 64);
         playBounds = new Rectangle(400 - 128, 240 - 18, 256, 36);
         touchPoint = new Vector2();

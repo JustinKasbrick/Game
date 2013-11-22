@@ -4,6 +4,8 @@ import com.badlogic.androidgames.framework.Game;
 import com.badlogic.androidgames.framework.Input;
 import com.badlogic.androidgames.framework.gl.Camera2D;
 import com.badlogic.androidgames.framework.gl.SpriteBatcher;
+import com.badlogic.androidgames.framework.gl.Texture;
+import com.badlogic.androidgames.framework.gl.TextureRegion;
 import com.badlogic.androidgames.framework.impl.GLScreen;
 import com.badlogic.androidgames.framework.math.OverlapTester;
 import com.badlogic.androidgames.framework.math.Rectangle;
@@ -21,14 +23,20 @@ public class ContinueScreen extends GLScreen
     SpriteBatcher batcher;
     Rectangle soundBounds;
     Vector2 touchPoint;
+    float xOffset = 0;
 
     public ContinueScreen(Game game) {
         super(game);
 
         guiCam = new Camera2D(glGraphics, 800, 480);
-        batcher = new SpriteBatcher(glGraphics, 100);
+        batcher = new SpriteBatcher(glGraphics, 100, false);
         soundBounds = new Rectangle(0, 0, 64, 64);
         touchPoint = new Vector2();
+        for(int i=0; i<3; i++)
+        {
+            xOffset = Math.max(Settings.saveFiles[i].summaryData.length() * Assets.font.glyphWidth, xOffset);
+        }
+        xOffset = 240 - xOffset / 2;
     }
 
     @Override
@@ -75,11 +83,11 @@ public class ContinueScreen extends GLScreen
 
 
         batcher.drawSprite(400, 336, 336, 64, Assets.saveBar);
-        Assets.font.drawText(batcher, Settings.saveFiles[0].summaryData, 400, 336);
+        Assets.font.drawText(batcher, Settings.saveFiles[0].summaryData, xOffset, 336);
         batcher.drawSprite(400, 240, 336, 64, Assets.saveBar);
-        Assets.font.drawText(batcher, Settings.saveFiles[1].summaryData, 400, 240);
+        Assets.font.drawText(batcher, Settings.saveFiles[1].summaryData, xOffset, 240);
         batcher.drawSprite(400, 144, 336, 64, Assets.saveBar);
-        Assets.font.drawText(batcher, Settings.saveFiles[2].summaryData, 400, 144);
+        Assets.font.drawText(batcher, Settings.saveFiles[2].summaryData, xOffset, 144);
 
         batcher.endBatch();
 

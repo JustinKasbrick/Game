@@ -11,30 +11,32 @@ public class SpriteBatcher {
     final float[] verticesBuffer;
     int bufferIndex;
     final Vertices vertices;
-    int numSprites;    
+    int numSprites;
+    boolean blend;
 
-    public SpriteBatcher(GLGraphics glGraphics, int maxSprites) {                
-        this.verticesBuffer = new float[maxSprites*4*4];        
-        this.vertices = new Vertices(glGraphics, maxSprites*4, maxSprites*6, false, true);
-        this.bufferIndex = 0;
-        this.numSprites = 0;
-                
-        short[] indices = new short[maxSprites*6];
-        int len = indices.length;
-        short j = 0;
-        for (int i = 0; i < len; i += 6, j += 4) {
-                indices[i + 0] = (short)(j + 0);
-                indices[i + 1] = (short)(j + 1);
-                indices[i + 2] = (short)(j + 2);
-                indices[i + 3] = (short)(j + 2);
-                indices[i + 4] = (short)(j + 3);
-                indices[i + 5] = (short)(j + 0);
-        }
-        vertices.setIndices(indices, 0, indices.length);                
-    }
+//    public SpriteBatcher(GLGraphics glGraphics, int maxSprites) {
+//        this.verticesBuffer = new float[maxSprites*4*4];
+//        this.vertices = new Vertices(glGraphics, maxSprites*4, maxSprites*6, false, true);
+//        this.bufferIndex = 0;
+//        this.numSprites = 0;
+//
+//        short[] indices = new short[maxSprites*6];
+//        int len = indices.length;
+//        short j = 0;
+//        for (int i = 0; i < len; i += 6, j += 4) {
+//                indices[i + 0] = (short)(j + 0);
+//                indices[i + 1] = (short)(j + 1);
+//                indices[i + 2] = (short)(j + 2);
+//                indices[i + 3] = (short)(j + 2);
+//                indices[i + 4] = (short)(j + 3);
+//                indices[i + 5] = (short)(j + 0);
+//        }
+//        vertices.setIndices(indices, 0, indices.length);
+//    }
     
     public SpriteBatcher(GLGraphics glGraphics, int maxSprites, boolean blend) {                
-        this.verticesBuffer = new float[maxSprites*4*4];        
+        this.verticesBuffer = new float[maxSprites*4*4];
+        this.blend = blend;
         this.vertices = new Vertices(glGraphics, maxSprites*4, maxSprites*6, blend, true);
         this.bufferIndex = 0;
         this.numSprites = 0;
@@ -156,37 +158,49 @@ public class SpriteBatcher {
         
         verticesBuffer[bufferIndex++] = x1;
         verticesBuffer[bufferIndex++] = y1;
-        verticesBuffer[bufferIndex++] = 1;
-        verticesBuffer[bufferIndex++] = 1;
-        verticesBuffer[bufferIndex++] = 1;
-        verticesBuffer[bufferIndex++] = alpha;
+        if(blend)
+        {
+            verticesBuffer[bufferIndex++] = 1;
+            verticesBuffer[bufferIndex++] = 1;
+            verticesBuffer[bufferIndex++] = 1;
+            verticesBuffer[bufferIndex++] = alpha;
+        }
         verticesBuffer[bufferIndex++] = region.u1;
         verticesBuffer[bufferIndex++] = region.v2;
         
         verticesBuffer[bufferIndex++] = x2;
         verticesBuffer[bufferIndex++] = y1;
-        verticesBuffer[bufferIndex++] = 1;
-        verticesBuffer[bufferIndex++] = 1;
-        verticesBuffer[bufferIndex++] = 1;
-        verticesBuffer[bufferIndex++] = alpha;
+        if(blend)
+        {
+            verticesBuffer[bufferIndex++] = 1;
+            verticesBuffer[bufferIndex++] = 1;
+            verticesBuffer[bufferIndex++] = 1;
+            verticesBuffer[bufferIndex++] = alpha;
+        }
         verticesBuffer[bufferIndex++] = region.u2;
         verticesBuffer[bufferIndex++] = region.v2;
         
         verticesBuffer[bufferIndex++] = x2;
         verticesBuffer[bufferIndex++] = y2;
-        verticesBuffer[bufferIndex++] = 1;
-        verticesBuffer[bufferIndex++] = 1;
-        verticesBuffer[bufferIndex++] = 1;
-        verticesBuffer[bufferIndex++] = alpha;
+        if(blend)
+        {
+            verticesBuffer[bufferIndex++] = 1;
+            verticesBuffer[bufferIndex++] = 1;
+            verticesBuffer[bufferIndex++] = 1;
+            verticesBuffer[bufferIndex++] = alpha;
+        }
         verticesBuffer[bufferIndex++] = region.u2;
         verticesBuffer[bufferIndex++] = region.v1;
         
         verticesBuffer[bufferIndex++] = x1;
         verticesBuffer[bufferIndex++] = y2;
-        verticesBuffer[bufferIndex++] = 1;
-        verticesBuffer[bufferIndex++] = 1;
-        verticesBuffer[bufferIndex++] = 1;
-        verticesBuffer[bufferIndex++] = alpha;
+        if(blend)
+        {
+            verticesBuffer[bufferIndex++] = 1;
+            verticesBuffer[bufferIndex++] = 1;
+            verticesBuffer[bufferIndex++] = 1;
+            verticesBuffer[bufferIndex++] = alpha;
+        }
         verticesBuffer[bufferIndex++] = region.u1;
         verticesBuffer[bufferIndex++] = region.v1;
         

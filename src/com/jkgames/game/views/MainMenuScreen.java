@@ -28,7 +28,7 @@ public class MainMenuScreen extends GLScreen {
     public MainMenuScreen(Game game) {
         super(game);
         guiCam = new Camera2D(glGraphics, 800, 480);
-        batcher = new SpriteBatcher(glGraphics, 100);
+        batcher = new SpriteBatcher(glGraphics, 100, false);
         soundBounds = new Rectangle(0, 0, 64, 64);
         newGameBounds = new Rectangle(400 - 128, 240 - 40, 256, 64);
         continueBounds = new Rectangle(400 - 128, 240 - 40, 256, 64);

@@ -13,6 +13,6 @@ public class CollectorCoin extends GameObject
 	public CollectorCoin(float x, float y, int order) {
 		super(x, y, COLLECTOR_COIN_WIDTH, COLLECTOR_COIN_HEIGHT);
 		Collected = false;
-		orderInLevel = order;
+        orderInLevel = order;
 	}
 }

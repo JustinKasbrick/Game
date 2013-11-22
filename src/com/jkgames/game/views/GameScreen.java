@@ -66,7 +66,7 @@ public class GameScreen extends GLScreen {
         state = GAME_READY;
         guiCam = new Camera2D(glGraphics, 800, 480);
         touchPoint = new Vector2();
-        batcher = new SpriteBatcher(glGraphics, 6000);
+        batcher = new SpriteBatcher(glGraphics, 6000, false);
         alphaBatcher = new SpriteBatcher(glGraphics, 100, true);
         worldListener = new WorldListener() {
             public void jump() {            
