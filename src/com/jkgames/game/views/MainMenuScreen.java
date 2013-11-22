@@ -30,8 +30,8 @@ public class MainMenuScreen extends GLScreen {
         guiCam = new Camera2D(glGraphics, 800, 480);
         batcher = new SpriteBatcher(glGraphics, 100, false);
         soundBounds = new Rectangle(0, 0, 64, 64);
-        newGameBounds = new Rectangle(400 - 128, 240 - 40, 256, 64);
-        continueBounds = new Rectangle(400 - 128, 240 - 40, 256, 64);
+        newGameBounds = new Rectangle(400 - 170, 280 -32, 340, 64);
+        continueBounds = new Rectangle(400 - 170, 200 - 32, 340, 64);
         //highscoresBounds = new Rectangle(160 - 150, 240 - 18, 300, 36);
         touchPoint = new Vector2();
     }       

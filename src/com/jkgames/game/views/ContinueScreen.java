@@ -23,7 +23,9 @@ public class ContinueScreen extends GLScreen
     SpriteBatcher batcher;
     Rectangle soundBounds;
     Vector2 touchPoint;
-    float xOffset = 0;
+    Rectangle[] saveFileBounds = {new Rectangle(400-168, 336-32, 336, 64),
+            new Rectangle(400-168, 240-32, 336, 64),
+            new Rectangle(400-168, 144-32, 336, 64)};
 
     public ContinueScreen(Game game) {
         super(game);
@@ -32,11 +34,6 @@ public class ContinueScreen extends GLScreen
         batcher = new SpriteBatcher(glGraphics, 100, false);
         soundBounds = new Rectangle(0, 0, 64, 64);
         touchPoint = new Vector2();
-        for(int i=0; i<3; i++)
-        {
-            xOffset = Math.max(Settings.saveFiles[i].summaryData.length() * Assets.font.glyphWidth, xOffset);
-        }
-        xOffset = 240 - xOffset / 2;
     }
 
     @Override
@@ -59,6 +56,16 @@ public class ContinueScreen extends GLScreen
                     //    Assets.music.play();
                     //else
                     //    Assets.music.pause();
+                }
+
+                for(int j=0; i<3; j++)
+                {
+                    if(OverlapTester.pointInRectangle(saveFileBounds[j], touchPoint)) {
+                        //Assets.playSound(Assets.clickSound);
+
+                        game.setScreen(new GameScreen(game, j));
+                        return;
+                    }
                 }
             }
         }
@@ -83,11 +90,11 @@ public class ContinueScreen extends GLScreen
 
 
         batcher.drawSprite(400, 336, 336, 64, Assets.saveBar);
-        Assets.font.drawText(batcher, Settings.saveFiles[0].summaryData, xOffset, 336);
+        Assets.font.drawText(batcher, Settings.saveFiles[0].summaryData, 250, 336);
         batcher.drawSprite(400, 240, 336, 64, Assets.saveBar);
-        Assets.font.drawText(batcher, Settings.saveFiles[1].summaryData, xOffset, 240);
+        Assets.font.drawText(batcher, Settings.saveFiles[1].summaryData, 250, 240);
         batcher.drawSprite(400, 144, 336, 64, Assets.saveBar);
-        Assets.font.drawText(batcher, Settings.saveFiles[2].summaryData, xOffset, 144);
+        Assets.font.drawText(batcher, Settings.saveFiles[2].summaryData, 250, 144);
 
         batcher.endBatch();
 

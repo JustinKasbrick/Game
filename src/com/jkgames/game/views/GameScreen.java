@@ -60,9 +60,11 @@ public class GameScreen extends GLScreen {
 	
     int lastScore;
     String scoreString;
+    int saveFile;
 
-    public GameScreen(Game game) {
+    public GameScreen(Game game, int saveFile) {
     	super(game);
+        this.saveFile = saveFile;
         state = GAME_READY;
         guiCam = new Camera2D(glGraphics, 800, 480);
         touchPoint = new Vector2();
@@ -92,6 +94,7 @@ public class GameScreen extends GLScreen {
         level = new Level(game.getFileIO(), levelArray[currentLevel++]);
         tileLevel = new Level(game.getFileIO(), "LevelOneA.txt");
 		world = new World(worldListener, level, tileLevel, currentLevel);
+        Settings.saveFiles[saveFile].save(currentLevel);
         renderer = new WorldRenderer(glGraphics, batcher, world);
         alphaRenderer = new WorldRenderer(glGraphics, alphaBatcher, world);
         
