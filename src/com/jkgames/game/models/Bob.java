@@ -17,22 +17,22 @@ public class Bob extends DynamicGameObject{
 	public static final int BOB_DIRECTION_RIGHT = 1;
 	public static final int BOB_DIRECTION_LEFT = -1;
 	
-	public static final Vector2 BOB_TOP_LEFT_COLISSION = new Vector2(-BOB_WIDTH/4, BOB_HEIGHT/2);
-	public static final Vector2 BOB_TOP_RIGHT_COLISSION = new Vector2(BOB_WIDTH/4, BOB_HEIGHT/2);
-	public static final Vector2 BOB_BOTTOM_LEFT_COLISSION = new Vector2(-BOB_WIDTH/4, -BOB_HEIGHT/2);
-	public static final Vector2 BOB_BOTTOM_RIGHT_COLISSION = new Vector2(BOB_WIDTH/4, -BOB_HEIGHT/2);
+	public static final Vector2 BOB_TOP_LEFT_COLLISION = new Vector2(-BOB_WIDTH/4, BOB_HEIGHT/2);
+	public static final Vector2 BOB_TOP_RIGHT_COLLISION = new Vector2(BOB_WIDTH/4, BOB_HEIGHT/2);
+	public static final Vector2 BOB_BOTTOM_LEFT_COLLISION = new Vector2(-BOB_WIDTH/4, -BOB_HEIGHT/2);
+	public static final Vector2 BOB_BOTTOM_RIGHT_COLLISION = new Vector2(BOB_WIDTH/4, -BOB_HEIGHT/2);
 	
-	public static final Vector2 BOB_FRONT_TOP_COLISSION = new Vector2(BOB_WIDTH/2, BOB_HEIGHT/4);
-	public static final Vector2 BOB_FRONT_BOTTOM_COLISSION = new Vector2(BOB_WIDTH/2, -BOB_HEIGHT/4);
-	public static final Vector2 BOB_BACK_TOP_COLISSION = new Vector2(-BOB_WIDTH/2, BOB_HEIGHT/4);
-	public static final Vector2 BOB_BACK_BOTTOM_COLISSION = new Vector2(-BOB_WIDTH/2, -BOB_HEIGHT/4);
+	public static final Vector2 BOB_FRONT_TOP_COLLISION = new Vector2(BOB_WIDTH/2, BOB_HEIGHT/4);
+	public static final Vector2 BOB_FRONT_BOTTOM_COLLISION = new Vector2(BOB_WIDTH/2, -BOB_HEIGHT/4);
+	public static final Vector2 BOB_BACK_TOP_COLLISION = new Vector2(-BOB_WIDTH/2, BOB_HEIGHT/4);
+	public static final Vector2 BOB_BACK_BOTTOM_COLLISION = new Vector2(-BOB_WIDTH/2, -BOB_HEIGHT/4);
 	
     public int state;
     float stateTime;
 	public int direction;
 	
     public Bob(float x, float y) {
-        super(x, y, BOB_WIDTH, BOB_HEIGHT);
+        super(x, y, BOB_WIDTH-0.2f, BOB_HEIGHT);
         state = BOB_STATE_FALL;
         stateTime = 0;
 		direction = BOB_DIRECTION_LEFT;

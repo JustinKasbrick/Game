@@ -208,15 +208,15 @@ public class GameScreen extends GLScreen {
         if(world.state == World.WORLD_STATE_NEXT_LEVEL) {
             state = GAME_LEVEL_END;        
         }
-        if(world.state == World.WORLD_STATE_GAME_OVER) {
-            state = GAME_OVER;
-            if(lastScore >= Settings.highscores[4]) 
-                scoreString = "new highscore: " + lastScore;
-            else
-                scoreString = "score: " + lastScore;
-            Settings.addScore(lastScore);
-            Settings.save(game.getFileIO());
-        }
+//        if(world.state == World.WORLD_STATE_GAME_OVER) {
+//            state = GAME_OVER;
+//            if(lastScore >= Settings.highscores[4])
+//                scoreString = "new highscore: " + lastScore;
+//            else
+//                scoreString = "score: " + lastScore;
+//            Settings.addScore(lastScore);
+//            Settings.save(game.getFileIO());
+//        }
     }
 
     private void updatePaused() {

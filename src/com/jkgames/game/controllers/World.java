@@ -15,8 +15,6 @@ import com.jkgames.game.models.BridgeSwitch;
 import com.jkgames.game.models.Castle;
 import com.jkgames.game.models.CollectorCoin;
 import com.jkgames.game.models.DrawBridge;
-import com.jkgames.game.models.GameState;
-import com.jkgames.game.models.Tile;
 import com.jkgames.game.models.TileFactory;
 import com.jkgames.game.models.ZombieBob;
 import com.jkgames.game.models.Level;
@@ -342,9 +340,9 @@ public class World {
 			tempVector2A.set(bob.position);
 			tempVector2B.set(bob.position);
 			if(OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
-					tempVector2A.add(Bob.BOB_BOTTOM_LEFT_COLISSION))
+					tempVector2A.add(Bob.BOB_BOTTOM_LEFT_COLLISION))
 					|| OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
-							tempVector2B.add(Bob.BOB_BOTTOM_RIGHT_COLISSION)))
+							tempVector2B.add(Bob.BOB_BOTTOM_RIGHT_COLLISION)))
 			{
 				bob.velocity.y = 0;
 				bob.position.y = y+1+(bob.bounds.height/2);
@@ -356,9 +354,9 @@ public class World {
 			tempVector2A.set(bob.position);
 			tempVector2B.set(bob.position);
 			if(OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
-					tempVector2A.add(Bob.BOB_TOP_LEFT_COLISSION))
+					tempVector2A.add(Bob.BOB_TOP_LEFT_COLLISION))
 					|| OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
-							tempVector2B.add(Bob.BOB_TOP_RIGHT_COLISSION))) 
+							tempVector2B.add(Bob.BOB_TOP_RIGHT_COLLISION)))
 			{
 				bob.velocity.y = 0;
 				bob.position.y = y-(bob.bounds.height/2);
@@ -369,9 +367,9 @@ public class World {
 			tempVector2A.set(bob.position);
 			tempVector2B.set(bob.position);
 			if(OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
-					tempVector2A.add(Bob.BOB_FRONT_BOTTOM_COLISSION))
+					tempVector2A.add(Bob.BOB_FRONT_BOTTOM_COLLISION))
 					|| OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
-							tempVector2B.add(Bob.BOB_FRONT_TOP_COLISSION)))
+							tempVector2B.add(Bob.BOB_FRONT_TOP_COLLISION)))
 					{    						
 						bob.position.x = x-(bob.bounds.width/2);
 					}
@@ -381,9 +379,9 @@ public class World {
 			tempVector2A.set(bob.position);
 			tempVector2B.set(bob.position);
 			if(OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
-					tempVector2A.add(Bob.BOB_BACK_BOTTOM_COLISSION))
+					tempVector2A.add(Bob.BOB_BACK_BOTTOM_COLLISION))
 					|| OverlapTester.pointInRectangle(new Rectangle(x, y, 1f, 1f), 
-							tempVector2B.add(Bob.BOB_BACK_TOP_COLISSION)))
+							tempVector2B.add(Bob.BOB_BACK_TOP_COLLISION)))
 					{    						
 						bob.position.x = x+1+(bob.bounds.width/2);
 					}

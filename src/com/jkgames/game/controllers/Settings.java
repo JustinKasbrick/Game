@@ -8,13 +8,14 @@ import java.io.OutputStreamWriter;
 
 import com.badlogic.androidgames.framework.FileIO;
 import com.jkgames.game.models.GameState;
+import com.jkgames.game.models.SaveFile;
 
 public class Settings 
 {
 	public static boolean soundEnabled = false;
-	public static int[] highscores = new int[] { 100, 80, 50, 30, 10 };
 	public static GameState gameState = new GameState(1);
-	
+	public static SaveFile[] saveFiles = {new SaveFile(), new SaveFile(), new SaveFile()};
+
 	public static void load(FileIO files) 
 	{
 		BufferedReader in = null;
@@ -23,8 +24,8 @@ public class Settings
 			in = new BufferedReader(new InputStreamReader(
 			files.readFile(".game")));
 			soundEnabled = Boolean.parseBoolean(in.readLine());
-			for (int i = 0; i < 5; i++) {
-				highscores[i] = Integer.parseInt(in.readLine());
+			for (int i = 0; i < 3; i++) {
+				saveFiles[i].setSummaryData(in.readLine());
 			}
 			int temp;
 			for(int i = 0; i < 1; i++)
@@ -54,7 +55,7 @@ public class Settings
 			}
 		}
 	}
-	
+
 	public static void save(FileIO files) 
 	{
 		BufferedWriter out = null;
@@ -68,7 +69,7 @@ public class Settings
 			
 			// write high scores
 			for (int i = 0; i < 5; i++) {
-				out.write(Integer.toString(highscores[i]) + "\n");
+				out.write(saveFiles[i].summaryData + "\n");
 			}
 			// write level state
 			for (int i = 0; i < 1; i++)
@@ -94,19 +95,4 @@ public class Settings
 			}
 		}
 	}
-	
-	public static void addScore(int score) 
-	{
-		for (int i = 0; i < 5; i++) 
-		{
-			if (highscores[i] < score) 
-			{
-				for (int j = 4; j > i; j--)
-					highscores[j] = highscores[j - 1];
-				highscores[i] = score;
-				break;
-			}
-		}
-	}
-	
 }

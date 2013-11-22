@@ -37,11 +37,11 @@ public class LoadGameScreen extends GLScreen
         //soundBounds = new Rectangle(0, 0, 64, 64);
         playBounds = new Rectangle(400 - 128, 240 - 18, 256, 36);
         touchPoint = new Vector2();
-        for(int i = 0;  i < 3; i++)
-        {
-        	saveFiles.add(new SaveFile("SaveFile" + (i+1)));
-        	saveFiles.get(i).LoadDisplayData();
-        }
+//        for(int i = 0;  i < 3; i++)
+//        {
+//        	saveFiles.add(new SaveFile("SaveFile" + (i+1)));
+//        	saveFiles.get(i).LoadDisplayData();
+//        }
 	}
 	
 	@Override

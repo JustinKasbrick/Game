@@ -1,11 +1,103 @@
 package com.jkgames.game.views;
 
-/**
- * Created with IntelliJ IDEA.
- * User: brennan
- * Date: 21/11/13
- * Time: 10:25 PM
- * To change this template use File | Settings | File Templates.
- */
-public class ContinueScreen {
+import com.badlogic.androidgames.framework.Game;
+import com.badlogic.androidgames.framework.Input;
+import com.badlogic.androidgames.framework.gl.Camera2D;
+import com.badlogic.androidgames.framework.gl.SpriteBatcher;
+import com.badlogic.androidgames.framework.impl.GLScreen;
+import com.badlogic.androidgames.framework.math.OverlapTester;
+import com.badlogic.androidgames.framework.math.Rectangle;
+import com.badlogic.androidgames.framework.math.Vector2;
+import com.jkgames.game.controllers.Settings;
+import com.jkgames.game.models.Assets;
+import com.jkgames.game.models.SaveFile;
+
+import javax.microedition.khronos.opengles.GL10;
+import java.util.List;
+
+public class ContinueScreen extends GLScreen
+{
+    Camera2D guiCam;
+    SpriteBatcher batcher;
+    Rectangle soundBounds;
+    Vector2 touchPoint;
+
+    public ContinueScreen(Game game) {
+        super(game);
+
+        guiCam = new Camera2D(glGraphics, 800, 480);
+        batcher = new SpriteBatcher(glGraphics, 100);
+        soundBounds = new Rectangle(0, 0, 64, 64);
+        touchPoint = new Vector2();
+    }
+
+    @Override
+    public void update(float deltaTime)
+    {
+        List<Input.TouchEvent> touchEvents = game.getInput().getTouchEvents();
+        game.getInput().getKeyEvents();
+
+        int len = touchEvents.size();
+        for(int i = 0; i < len; i++) {
+            Input.TouchEvent event = touchEvents.get(i);
+            if(event.type == Input.TouchEvent.TOUCH_UP) {
+                touchPoint.set(event.x, event.y);
+                guiCam.touchToWorld(touchPoint);
+
+                if(OverlapTester.pointInRectangle(soundBounds, touchPoint)) {
+                    //Assets.playSound(Assets.clickSound);
+                    Settings.soundEnabled = !Settings.soundEnabled;
+                    //if(Settings.soundEnabled)
+                    //    Assets.music.play();
+                    //else
+                    //    Assets.music.pause();
+                }
+            }
+        }
+    }
+
+    @Override
+    public void present(float deltaTime) {
+        GL10 gl = glGraphics.getGL();
+        gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+        guiCam.setViewportAndMatrices();
+
+        gl.glEnable(GL10.GL_TEXTURE_2D);
+
+        batcher.beginBatch(Assets.background);
+        batcher.drawSprite(400, 240, 800, 480, Assets.backgroundRegion);
+        batcher.endBatch();
+
+        gl.glEnable(GL10.GL_BLEND);
+        gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
+
+        batcher.beginBatch(Assets.items);
+
+
+        batcher.drawSprite(400, 336, 336, 64, Assets.saveBar);
+        Assets.font.drawText(batcher, Settings.saveFiles[0].summaryData, 400, 336);
+        batcher.drawSprite(400, 240, 336, 64, Assets.saveBar);
+        Assets.font.drawText(batcher, Settings.saveFiles[1].summaryData, 400, 240);
+        batcher.drawSprite(400, 144, 336, 64, Assets.saveBar);
+        Assets.font.drawText(batcher, Settings.saveFiles[2].summaryData, 400, 144);
+
+        batcher.endBatch();
+
+        gl.glDisable(GL10.GL_BLEND);
+    }
+
+    @Override
+    public void pause() {
+        Settings.save(game.getFileIO());
+    }
+
+    @Override
+    public void resume() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void dispose() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

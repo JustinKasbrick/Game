@@ -18,14 +18,16 @@ public class Assets {
     public static TextureRegion pauseMenu;
     public static TextureRegion ready;
     public static TextureRegion gameOver;
-    //public static TextureRegion highScoresRegion;
+    public static TextureRegion newGame;
+    public static TextureRegion continueGame;
+
+    public static TextureRegion saveBar;
     //public static TextureRegion logo;
     public static TextureRegion soundOn;
     public static TextureRegion soundOff;
     //public static TextureRegion arrow;
     public static TextureRegion pause;    
     //public static TextureRegion spring;
-    //public static TextureRegion castle;
     //public static Animation coinAnim;
     //public static Animation bobJump;
     //public static Animation bobFall;
@@ -75,6 +77,9 @@ public class Assets {
         pauseMenu = new TextureRegion(items, 192, 128, 192, 64);
         ready = new TextureRegion(items, 0, 128, 192, 32);
         gameOver = new TextureRegion(items, 0, 194, 128, 64);
+        newGame = new TextureRegion(items, 160, 228, 170, 31);
+        continueGame = new TextureRegion(items, 191, 258, 152, 32);
+        saveBar = new TextureRegion(items, 0, 323, 168, 32);
         //highScoresRegion = new TextureRegion(Assets.items, 0, 257, 300, 110 / 3);
         //logo = new TextureRegion(items, 0, 352, 274, 142);
         //soundOff = new TextureRegion(items, 0, 0, 64, 64);
