@@ -30,6 +30,10 @@ public class ContinueScreen extends GLScreen
     public ContinueScreen(Game game) {
         super(game);
 
+        for(int i=0; i<3; i++)
+        {
+            Settings.saveFiles[i] = (SaveFile)Settings.readSaveFile(i);
+        }
         guiCam = new Camera2D(glGraphics, 800, 480);
         batcher = new SpriteBatcher(glGraphics, 100, false);
         soundBounds = new Rectangle(0, 0, 64, 64);
@@ -108,7 +112,10 @@ public class ContinueScreen extends GLScreen
 
     @Override
     public void resume() {
-        //To change body of implemented methods use File | Settings | File Templates.
+        for(int i=0; i<3; i++)
+        {
+            Settings.saveFiles[i] = (SaveFile)Settings.readSaveFile(i);
+        }
     }
 
     @Override

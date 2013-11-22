@@ -288,7 +288,7 @@ public class World {
     				//increase score
     				grid.removeObject(collider);
     				((CollectorCoin) collider).Collected = true;
-    				Settings.gameState.updateLevelCoinState(currentLevel-1, ((CollectorCoin) collider).orderInLevel, 1);
+    				Settings.saveFiles[0].coinCollected(currentLevel, ((CollectorCoin) collider).orderInLevel);
     			}
     			else if(collider instanceof BridgeSwitch)
     			{

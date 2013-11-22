@@ -12,6 +12,7 @@ public class SaveFile {
     public boolean empty;
     public int numCoinsCollected;
     public String summaryData;
+    public byte[] coinsCollected;
 
 	public SaveFile() {
 		empty = true;
@@ -19,6 +20,7 @@ public class SaveFile {
         percentComplete = 0;
         numCoinsCollected = 0;
         summaryData = "Empty";
+        coinsCollected = new byte[100];
 	}
 
     public void setSummaryData(String summary)
@@ -38,8 +40,9 @@ public class SaveFile {
         summaryData = "Level " + currentLevel + "; Coins " + numCoinsCollected + "; " + percentComplete + "% Complete";
     }
 
-    public void incrementCoinsCollect()
+    public void coinCollected(int level, int coinPositionInLevel)
     {
+        coinsCollected[((level-1) * 4) + coinPositionInLevel] = 1;
         numCoinsCollected++;
     }
 
