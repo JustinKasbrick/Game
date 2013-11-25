@@ -127,19 +127,19 @@ public class World {
 
         // read all collector coins (there is always exactly 3)
         int numObjs = 3;
-		start = level.text.indexOf("cc")+3;
+		start = tileLevel.text.indexOf("cc")+3;
 		for(int i = 0; i<numObjs; i++)
 		{			
-			collectorCoins.add(new CollectorCoin(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10)), i+1));
+			collectorCoins.add(new CollectorCoin(Float.parseFloat(tileLevel.text.substring(start, start+4)), Float.parseFloat(tileLevel.text.substring(start+6, start+10)), i+1));
 			start += 12;
 		}
 		
         for(int i=0; i<numObjs; i++)
         {
-        	if(Settings.gameState.levelArray[currentLevel-1][i] != 1)
+        	//if(Settings.gameState.levelArray[currentLevel][i] != 1)
         		grid.insertStaticObject(collectorCoins.get(i));
-        	else
-        		collectorCoins.get(i).Collected = true;
+//        	else
+//        		collectorCoins.get(i).Collected = true;
         }
 
 //        // read all drawbridges
@@ -166,8 +166,8 @@ public class World {
 //        	grid.insertStaticObject(bridgeSwitches.get(i));
         
         // read Castle (there is only 1 castle in each level)
-		start = level.text.indexOf("ca")+3;
-		castle = (new Castle(Float.parseFloat(level.text.substring(start, start+4)), Float.parseFloat(level.text.substring(start+6, start+10))));
+		start = tileLevel.text.indexOf("ca")+3;
+		castle = (new Castle(Float.parseFloat(tileLevel.text.substring(start, start+4)), Float.parseFloat(tileLevel.text.substring(start+6, start+10))));
 		grid.insertStaticObject(castle);
     }
 

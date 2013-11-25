@@ -5,21 +5,26 @@ import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
 
 import com.badlogic.androidgames.framework.FileIO;
+import com.badlogic.androidgames.framework.math.Vector2;
 
 public class Level {
-    FileIO fileIO;
-    String fileName;
-	public String text;
+    public String text;
+    boolean accessible;
+    public byte coinsArray[];
+    public Vector2 position;
     
-    
-    public Level(FileIO f_IO, String fileName) {
-        this.fileIO = f_IO;
-        this.fileName = fileName;
+    public Level(byte accessible, byte c1, byte c2, byte c3, Vector2 pos) {
 		this.text = "";
-        load();
+        if(accessible == 1)
+            this.accessible = true;
+        else
+            this.accessible = false;
+
+        coinsArray = new byte[] {c1, c2, c3};
+        position = pos;
     }
     
-    private void load() {
+    public void load(FileIO fileIO, String fileName) {
        InputStream in = null;
         try {
             in = fileIO.readAsset(fileName);
@@ -31,7 +36,7 @@ public class Level {
                 try { in.close(); } catch (IOException e) { }
         }
     }
-	
+
 	private String loadTextFile(InputStream inputStream) throws IOException {
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
         byte[] bytes = new byte[4096];
@@ -40,4 +45,9 @@ public class Level {
             byteStream.write(bytes, 0, len);
         return new String(byteStream.toByteArray(), "UTF8");
     }
+
+    public boolean isAccessible() {
+        return accessible;
+    }
 }
+

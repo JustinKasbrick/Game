@@ -3,12 +3,14 @@ package com.jkgames.game.models;
 import android.R;
 import com.jkgames.game.controllers.Settings;
 
-public class SaveFile {
+import java.io.Serializable;
 
+public class SaveFile implements Serializable {
+    private static final long serialVersionUID = 3L;
     static final float TOTAL = 4*3;
 
     public int currentLevel;
-    public float percentComplete;
+    public int percentComplete;
     public boolean empty;
     public int numCoinsCollected;
     public String summaryData;
@@ -35,9 +37,9 @@ public class SaveFile {
             empty = false;
         this.currentLevel = currentLevel;
 
-        percentComplete = (numCoinsCollected + currentLevel)/TOTAL;
+        percentComplete = (int)((numCoinsCollected + currentLevel)/TOTAL * 100);
 
-        summaryData = "Level " + currentLevel + "; Coins " + numCoinsCollected + "; " + percentComplete + "% Complete";
+        summaryData = "Level " + currentLevel + " C:" + numCoinsCollected + " " + percentComplete + "%";
     }
 
     public void coinCollected(int level, int coinPositionInLevel)

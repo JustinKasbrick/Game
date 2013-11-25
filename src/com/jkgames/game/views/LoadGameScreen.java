@@ -59,7 +59,7 @@ public class LoadGameScreen extends GLScreen
                 
                 if(OverlapTester.pointInRectangle(playBounds, touchPoint)) {
                     //Assets.playSound(Assets.clickSound);
-                    game.setScreen(new GameScreen(game));
+//                    game.setScreen(new GameScreen(game, 1));
                     return;
                 }
 //                if(OverlapTester.pointInRectangle(soundBounds, touchPoint)) {

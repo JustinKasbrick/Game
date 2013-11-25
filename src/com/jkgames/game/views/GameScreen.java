@@ -62,7 +62,7 @@ public class GameScreen extends GLScreen {
     String scoreString;
     int saveFile;
 
-    public GameScreen(Game game, int saveFile) {
+    public GameScreen(Game game, int saveFile, Level level) {
     	super(game);
         this.saveFile = saveFile;
         state = GAME_READY;
@@ -87,13 +87,8 @@ public class GameScreen extends GLScreen {
                 //Assets.playSound(Assets.coinSound);
             }                      
         };
-		levelArray = new String[NUM_LEVELS];
-		currentLevel = 0;
-		for(int i=0; i<NUM_LEVELS; i++)
-			levelArray[i] = "Level" + (i+1) + ".txt";
-        level = new Level(game.getFileIO(), levelArray[currentLevel++]);
-        tileLevel = new Level(game.getFileIO(), "LevelOneA.txt");
-		world = new World(worldListener, level, tileLevel, currentLevel);
+        tileLevel = level;
+		world = new World(worldListener, null, tileLevel, currentLevel);
         Settings.saveFiles[saveFile].save(currentLevel);
         renderer = new WorldRenderer(glGraphics, batcher, world);
         alphaRenderer = new WorldRenderer(glGraphics, alphaBatcher, world);
@@ -188,13 +183,13 @@ public class GameScreen extends GLScreen {
 					return;
 				}
 				
-				if(OverlapTester.pointInRectangle(jumpBounds, touchPoint) && jump == false) {
+				if(OverlapTester.pointInRectangle(jumpBounds, touchPoint) && !jump) {
 					//Assets.playSound(Assets.clickSound);
 					if(world.bob.state != Bob.BOB_STATE_JUMP
 							&& world.bob.state != Bob.BOB_STATE_FALL)
 						jump = true;
 				}
-				if(OverlapTester.pointInRectangle(attackBounds, touchPoint) && attack == false) {
+				if(OverlapTester.pointInRectangle(attackBounds, touchPoint) && !attack) {
 					//Assets.playSound(Assets.clickSound);
 					attack = true;
 				}
@@ -258,12 +253,12 @@ public class GameScreen extends GLScreen {
             touchPoint.set(event.x, event.y);
             guiCam.touchToWorld(touchPoint);
             
-            if(OverlapTester.pointInRectangle(attackBounds, touchPoint) && attack == false) {
-		        world = new World(worldListener, new Level(game.getFileIO(), levelArray[currentLevel]), tileLevel, currentLevel);
-		        renderer = new WorldRenderer(glGraphics, batcher, world);
-		        world.score = lastScore;
-		        state = GAME_READY;		        
-            }
+//            if(OverlapTester.pointInRectangle(attackBounds, touchPoint) && attack == false) {
+//		        world = new World(worldListener, new Level(game.getFileIO(), levelArray[currentLevel]), tileLevel, currentLevel);
+//		        renderer = new WorldRenderer(glGraphics, batcher, world);
+//		        world.score = lastScore;
+//		        state = GAME_READY;
+//            }
         }
     }
 
@@ -286,9 +281,9 @@ public class GameScreen extends GLScreen {
         
         renderer.render();
         
-        if(alpha > 0)
-        	alphaRenderer.renderBob(alpha);
-        alpha -= 0.01;
+//        if(alpha > 0)
+//        	alphaRenderer.renderBob(alpha);
+//        alpha -= 0.01;
         guiCam.setViewportAndMatrices();
         gl.glEnable(GL10.GL_BLEND);
         gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
@@ -354,6 +349,7 @@ public class GameScreen extends GLScreen {
         if(state == GAME_RUNNING)
             state = GAME_PAUSED;
         Settings.save(game.getFileIO());
+        Settings.writeSaveFile(game.getFileIO(), saveFile);
     }
 
     @Override

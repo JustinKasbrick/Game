@@ -74,7 +74,7 @@ public class WorldRenderer {
         
         batcher.beginBatch(Assets.items);
         renderTiles();
-        //renderBob();
+        renderBob();
         //renderPlatforms();
 		//renderVerticalPlatforms();
         renderCollectorCoins();

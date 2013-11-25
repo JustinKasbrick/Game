@@ -12,7 +12,10 @@ import com.jkgames.game.controllers.Settings;
 public class Assets {
     public static Texture background;
     public static TextureRegion backgroundRegion;
-    
+
+    public static Texture world;
+    public static TextureRegion worldRegion;
+
     public static Texture items;        
     public static TextureRegion mainMenu;
     public static TextureRegion pauseMenu;
@@ -22,6 +25,8 @@ public class Assets {
     public static TextureRegion continueGame;
 
     public static TextureRegion saveBar;
+    public static TextureRegion levelCircle;
+    public static TextureRegion star;
     //public static TextureRegion logo;
     public static TextureRegion soundOn;
     public static TextureRegion soundOff;
@@ -71,7 +76,10 @@ public class Assets {
     public static void load(GLGame game) {
         background = new Texture(game, "glBackground.png");
         backgroundRegion = new TextureRegion(background, 0, 0, 800, 480);
-        
+
+        world = new Texture(game, "world.png");
+        worldRegion = new TextureRegion(world, 0, 0, 512, 256);
+
         items = new Texture(game, "items.png");        
         mainMenu = new TextureRegion(items, 0, 161, 128, 32);
         pauseMenu = new TextureRegion(items, 192, 128, 192, 64);
@@ -80,6 +88,8 @@ public class Assets {
         newGame = new TextureRegion(items, 160, 228, 170, 31);
         continueGame = new TextureRegion(items, 191, 258, 152, 32);
         saveBar = new TextureRegion(items, 0, 323, 168, 32);
+        levelCircle = new TextureRegion(items, 165, 165, 32, 28);
+        star = new TextureRegion(items, 356, 202, 15, 15);
         //highScoresRegion = new TextureRegion(Assets.items, 0, 257, 300, 110 / 3);
         //logo = new TextureRegion(items, 0, 352, 274, 142);
         //soundOff = new TextureRegion(items, 0, 0, 64, 64);

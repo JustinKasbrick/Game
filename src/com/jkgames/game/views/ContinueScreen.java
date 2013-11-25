@@ -29,11 +29,6 @@ public class ContinueScreen extends GLScreen
 
     public ContinueScreen(Game game) {
         super(game);
-
-        for(int i=0; i<3; i++)
-        {
-            Settings.saveFiles[i] = (SaveFile)Settings.readSaveFile(i);
-        }
         guiCam = new Camera2D(glGraphics, 800, 480);
         batcher = new SpriteBatcher(glGraphics, 100, false);
         soundBounds = new Rectangle(0, 0, 64, 64);
@@ -67,7 +62,7 @@ public class ContinueScreen extends GLScreen
                     if(OverlapTester.pointInRectangle(saveFileBounds[j], touchPoint)) {
                         //Assets.playSound(Assets.clickSound);
 
-                        game.setScreen(new GameScreen(game, j));
+                        game.setScreen(new WorldScreen(game, j));
                         return;
                     }
                 }
@@ -114,7 +109,7 @@ public class ContinueScreen extends GLScreen
     public void resume() {
         for(int i=0; i<3; i++)
         {
-            Settings.saveFiles[i] = (SaveFile)Settings.readSaveFile(i);
+            Settings.saveFiles[i] = (SaveFile)Settings.readSaveFile(game.getFileIO(), i);
         }
     }
 

@@ -1,27 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="50bf27e7-11e4-436e-ad68-78bde70d1eb4" name="Default" comment="">
+    <list default="true" id="50bf27e7-11e4-436e-ad68-78bde70d1eb4" name="Default" comment="Noodlin with IntelliJ">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/jkgames/game/views/WorldScreen.java" />
+      <change type="DELETED" beforePath="C:\Users\brennan\IdeaProjects\Game\assets\Level1.txt" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/items.png" afterPath="$PROJECT_DIR$/assets/items.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/badlogic/androidgames/framework/impl/AndroidFileIO.java" afterPath="$PROJECT_DIR$/src/com/badlogic/androidgames/framework/impl/AndroidFileIO.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/jkgames/game/models/Assets.java" afterPath="$PROJECT_DIR$/src/com/jkgames/game/models/Assets.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/jkgames/game/views/ContinueScreen.java" afterPath="$PROJECT_DIR$/src/com/jkgames/game/views/ContinueScreen.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/jkgames/game/views/GameScreen.java" afterPath="$PROJECT_DIR$/src/com/jkgames/game/views/GameScreen.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/jkgames/game/models/Level.java" afterPath="$PROJECT_DIR$/src/com/jkgames/game/models/Level.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/jkgames/game/views/LoadGameScreen.java" afterPath="$PROJECT_DIR$/src/com/jkgames/game/views/LoadGameScreen.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gen/com/jkgames/game/Manifest.java" afterPath="$PROJECT_DIR$/gen/com/jkgames/game/Manifest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/jkgames/game/models/SaveFile.java" afterPath="$PROJECT_DIR$/src/com/jkgames/game/models/SaveFile.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/jkgames/game/controllers/Settings.java" afterPath="$PROJECT_DIR$/src/com/jkgames/game/controllers/Settings.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/jkgames/game/controllers/World.java" afterPath="$PROJECT_DIR$/src/com/jkgames/game/controllers/World.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/jkgames/game/controllers/WorldRenderer.java" afterPath="$PROJECT_DIR$/src/com/jkgames/game/controllers/WorldRenderer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AppTemplate.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385154726189" ignored="false" />
-    <file path="/fragment.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385142483480" ignored="false" />
-    <file path="/GameScreen.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385148769822" ignored="false" />
-    <file path="/World.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385155612866" ignored="false" />
+    <file path="/Dummy.txt" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385173106195" ignored="false" />
+    <file path="/fragment.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385169624105" ignored="false" />
+    <file path="/GameScreen.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385243691930" ignored="false" />
+    <file path="/World.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385352141066" ignored="false" />
     <file path="/WorldRenderer.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385060488315" ignored="false" />
-    <file path="/Assets.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385059627513" ignored="false" />
-    <file path="/ContinueScreen.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385157927308" ignored="false" />
+    <file path="/Assets.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385232779514" ignored="false" />
+    <file path="/ContinueScreen.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385350171297" ignored="false" />
     <file path="/SpriteBatcher.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385136266528" ignored="false" />
     <file path="/LoadGameScreen.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385136342323" ignored="false" />
     <file path="/MainMenuScreen.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385136349275" ignored="false" />
-    <file path="/SaveFile.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385155353322" ignored="false" />
-    <file path="/Settings.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385157891079" ignored="false" />
+    <file path="/SaveFile.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385178936514" ignored="false" />
+    <file path="/Settings.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385177352925" ignored="false" />
+    <file path="/AndroidFileIO.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385172354631" ignored="false" />
+    <file path="/WorldScreen.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385351799188" ignored="false" />
+    <file path="/Level.java" changelist="50bf27e7-11e4-436e-ad68-78bde70d1eb4" time="1385351695664" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +49,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -72,54 +86,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/com/jkgames/game/views/GameScreen.java" line="96" class="com.jkgames.game.views.GameScreen" package="com.jkgames.game.views">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/jkgames/game/views/ContinueScreen.java" line="32" class="com.jkgames.game.views.ContinueScreen" package="com.jkgames.game.views">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/com/jkgames/game/views/ContinueScreen.java" line="114" class="com.jkgames.game.views.ContinueScreen" package="com.jkgames.game.views">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -136,7 +103,7 @@
       <file leaf-file-name="World.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/controllers/World.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="122" column="118" selection-start="4262" selection-end="4262" vertical-scroll-proportion="0.0">
+            <state line="190" column="63" selection-start="6760" selection-end="6760" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -145,25 +112,7 @@
       <file leaf-file-name="CollectorCoin.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/models/CollectorCoin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="65" selection-start="488" selection-end="488" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ContinueScreen.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/views/ContinueScreen.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="117" column="71" selection-start="4059" selection-end="4059" vertical-scroll-proportion="3.3346155">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SaveFile.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/models/SaveFile.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="75" selection-start="441" selection-end="441" vertical-scroll-proportion="0.0">
+            <state line="4" column="13" selection-start="103" selection-end="103" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -172,25 +121,25 @@
       <file leaf-file-name="Settings.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/controllers/Settings.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="109" column="10" selection-start="2848" selection-end="2848" vertical-scroll-proportion="0.0">
+            <state line="16" column="92" selection-start="475" selection-end="475" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameScreen.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="GameState.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/models/GameState.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="13" selection-start="251" selection-end="251" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameScreen.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/views/GameScreen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="359" column="62" selection-start="11734" selection-end="11734" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainMenuScreen.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/views/MainMenuScreen.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="0" selection-start="3023" selection-end="3023" vertical-scroll-proportion="0.0">
+            <state line="285" column="55" selection-start="9141" selection-end="9141" vertical-scroll-proportion="0.53216374">
               <folding />
             </state>
           </provider>
@@ -199,16 +148,27 @@
       <file leaf-file-name="GLGame.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/badlogic/androidgames/framework/impl/GLGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="113" column="0" selection-start="3609" selection-end="3609" vertical-scroll-proportion="0.0">
+            <state line="144" column="0" selection-start="4319" selection-end="4319" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GLSurfaceView.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://C:/Development/adt-bundle-windows-x86_64-20131030/sdk/platforms/android-10/android.jar!/android/opengl/GLSurfaceView.class">
+      <file leaf-file-name="WorldScreen.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/views/WorldScreen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="57" selection-start="364" selection-end="364" vertical-scroll-proportion="0.0">
+            <state line="72" column="0" selection-start="2973" selection-end="2973" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Assets.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/models/Assets.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="90" column="65" selection-start="3472" selection-end="3472" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -217,7 +177,16 @@
       <file leaf-file-name="WorldRenderer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/controllers/WorldRenderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="94" column="16" selection-start="3190" selection-end="3190" vertical-scroll-proportion="0.0">
+            <state line="76" column="8" selection-start="2643" selection-end="2643" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Level.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/models/Level.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="32" column="0" selection-start="875" selection-end="875" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -241,25 +210,28 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/jkgames/game/models/Assets.java" />
-        <option value="$PROJECT_DIR$/src/com/jkgames/game/controllers/WorldRenderer.java" />
-        <option value="$PROJECT_DIR$/src/com/jkgames/game/views/LoadGameScreen.java" />
         <option value="$PROJECT_DIR$/src/com/badlogic/androidgames/framework/gl/SpriteBatcher.java" />
         <option value="$PROJECT_DIR$/src/com/jkgames/game/views/MainMenuScreen.java" />
-        <option value="$PROJECT_DIR$/src/com/jkgames/game/views/GameScreen.java" />
-        <option value="$PROJECT_DIR$/src/com/jkgames/game/models/SaveFile.java" />
-        <option value="$PROJECT_DIR$/src/com/jkgames/game/controllers/World.java" />
         <option value="$PROJECT_DIR$/src/com/jkgames/game/models/CollectorCoin.java" />
+        <option value="$PROJECT_DIR$/src/com/badlogic/androidgames/framework/impl/AndroidFileIO.java" />
+        <option value="$PROJECT_DIR$/src/com/jkgames/game/models/SaveFile.java" />
+        <option value="$PROJECT_DIR$/src/com/jkgames/game/views/LoadGameScreen.java" />
+        <option value="$PROJECT_DIR$/src/com/jkgames/game/models/Assets.java" />
         <option value="$PROJECT_DIR$/src/com/jkgames/game/controllers/Settings.java" />
         <option value="$PROJECT_DIR$/src/com/jkgames/game/views/ContinueScreen.java" />
+        <option value="$PROJECT_DIR$/src/com/jkgames/game/models/Level.java" />
+        <option value="$PROJECT_DIR$/src/com/jkgames/game/views/WorldScreen.java" />
+        <option value="$PROJECT_DIR$/src/com/jkgames/game/controllers/World.java" />
+        <option value="$PROJECT_DIR$/src/com/jkgames/game/controllers/WorldRenderer.java" />
+        <option value="$PROJECT_DIR$/src/com/jkgames/game/views/GameScreen.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="1911" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -287,8 +259,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -307,12 +277,133 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppTemplate" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppTemplate" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppTemplate" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppTemplate" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppTemplate" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="OverrideImplement.combined" value="true" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.lastSelected" value="preferences.keymap" />
     <property name="MemberChooser.sorted" value="false" />
@@ -324,8 +415,8 @@
     <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RunManager" selected="Android Application.AppTemplate">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -360,19 +451,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -398,6 +476,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -455,8 +546,8 @@
       <option name="ACTIVITY_CLASS" value="" />
       <option name="MODE" value="default_activity" />
       <option name="DEPLOY" value="true" />
-      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="PREFERRED_AVD" value="Nexus4" />
+      <option name="TARGET_SELECTION_MODE" value="USB_DEVICE" />
+      <option name="PREFERRED_AVD" value="" />
       <option name="USE_COMMAND_LINE" value="true" />
       <option name="COMMAND_LINE" value="" />
       <option name="WIPE_USER_DATA" value="false" />
@@ -508,25 +599,25 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="1911" y="-9" width="1938" height="1050" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39198217" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39164785" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295711" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32844242" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16328709" sideWeight="0.6080178" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16328709" sideWeight="0.6083521" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295711" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -600,114 +691,118 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gen/com/jkgames/game/BuildConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="19" selection-start="126" selection-end="126" vertical-scroll-proportion="0.088541664" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/models/Assets.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="24" selection-start="2589" selection-end="2589" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/badlogic/androidgames/framework/gl/SpriteBatcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="44" selection-start="340" selection-end="340" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/badlogic/androidgames/framework/gl/Font.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="63" selection-start="968" selection-end="968" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/badlogic/androidgames/framework/math/Rectangle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="11" selection-start="160" selection-end="160" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/views/LoadGameScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="58" selection-start="1175" selection-end="1175" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/controllers/WorldRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="16" selection-start="3190" selection-end="3190" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/views/MainMenuScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="0" selection-start="3023" selection-end="3023" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/badlogic/androidgames/framework/impl/GLGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="0" selection-start="3609" selection-end="3609" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Development/adt-bundle-windows-x86_64-20131030/sdk/platforms/android-10/android.jar!/android/opengl/GLSurfaceView.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="57" selection-start="364" selection-end="364" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/views/GameScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="359" column="62" selection-start="11734" selection-end="11734" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/models/CollectorCoin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="65" selection-start="488" selection-end="488" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/controllers/World.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="118" selection-start="4262" selection-end="4262" vertical-scroll-proportion="0.0">
+        <state line="62" column="37" selection-start="2230" selection-end="2230" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/models/SaveFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="75" selection-start="441" selection-end="441" vertical-scroll-proportion="0.0">
+        <state line="18" column="43" selection-start="474" selection-end="474" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/adt-bundle-windows-x86_64-20130219/adt-bundle-windows-x86_64-20130219/sdk/platforms/android-10/android.jar!/java/lang/ClassLoader.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="30" selection-start="2357" selection-end="2357" vertical-scroll-proportion="0.332">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/controllers/Settings.java">
+    <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/views/MainMenuScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="10" selection-start="2848" selection-end="2848" vertical-scroll-proportion="0.0">
+        <state line="109" column="34" selection-start="4147" selection-end="4147" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/views/ContinueScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="71" selection-start="4059" selection-end="4059" vertical-scroll-proportion="3.3346155">
+        <state line="69" column="11" selection-start="1467" selection-end="2635" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/models/Assets.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="90" column="65" selection-start="3472" selection-end="3472" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/badlogic/androidgames/framework/impl/GLGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="144" column="0" selection-start="4319" selection-end="4319" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/models/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="0" selection-start="875" selection-end="875" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/views/WorldScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="0" selection-start="2973" selection-end="2973" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/adt-bundle-windows-x86_64-20130219/adt-bundle-windows-x86_64-20130219/sdk/platforms/android-10/android.jar!/android/opengl/GLSurfaceView.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/models/CollectorCoin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="13" selection-start="103" selection-end="103" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/controllers/Settings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="92" selection-start="475" selection-end="475" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/models/GameState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="13" selection-start="251" selection-end="251" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/controllers/World.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="190" column="63" selection-start="6760" selection-end="6760" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/controllers/WorldRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="76" column="8" selection-start="2643" selection-end="2643" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/jkgames/game/views/GameScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="285" column="55" selection-start="9141" selection-end="9141" vertical-scroll-proportion="0.53216374">
           <folding />
         </state>
       </provider>

@@ -7,12 +7,11 @@ import com.badlogic.androidgames.framework.FileIO;
 import com.jkgames.game.models.GameState;
 import com.jkgames.game.models.SaveFile;
 
-public class Settings implements Serializable
+public class Settings
 {
 	public static boolean soundEnabled = false;
 	public static GameState gameState = new GameState(1);
 	public static SaveFile[] saveFiles = {new SaveFile(), new SaveFile(), new SaveFile()};
-    private static final long serialVersionUID = 001;
 
     public static void load(FileIO files)
 	{
@@ -107,11 +106,11 @@ public class Settings implements Serializable
 		}
 	}
 
-    public void writeSaveFile(String saveFile, int index)
+    public static void writeSaveFile(FileIO files, int index)
     {
         try
         {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(saveFile));
+            ObjectOutputStream oos = new ObjectOutputStream(files.writeFile(".save"+index));
             oos.writeObject(saveFiles[index]);
             oos.flush();
             oos.close();
@@ -122,18 +121,22 @@ public class Settings implements Serializable
         }
     }
 
-    public static Object readSaveFile(int saveFileNumber)
+    public static Object readSaveFile(FileIO files, int saveFileNumber)
     {
-        String file = ".save"+(saveFileNumber);
         try
         {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+            ObjectInputStream ois = new ObjectInputStream(files.readFile(".save"+(saveFileNumber)));
             Object o = ois.readObject();
             return o;
         }
         catch (IOException ex)
         {
-            Log.v("saveFile"+ saveFileNumber, ex.getMessage());
+//            if(ex instanceof FileNotFoundException)
+//            {
+                writeSaveFile(files, saveFileNumber);
+                return new SaveFile();
+//            }
+            //Log.v("saveFile"+ saveFileNumber, ex.getMessage());
         }
         catch (ClassNotFoundException ex)
         {
@@ -141,10 +144,5 @@ public class Settings implements Serializable
         }
 
         return null;
-    }
-
-    public static void saveFile(SaveFile file, int index)
-    {
-
     }
 }
