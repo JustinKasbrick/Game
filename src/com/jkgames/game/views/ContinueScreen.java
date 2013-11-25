@@ -40,7 +40,7 @@ public class ContinueScreen extends GLScreen
     public void update(float deltaTime)
     {
         List<Input.TouchEvent> touchEvents = game.getInput().getTouchEvents();
-        game.getInput().getKeyEvents();
+        List<Input.KeyEvent> keyEvents = game.getInput().getKeyEvents();
 
         int len = touchEvents.size();
         for(int i = 0; i < len; i++) {
@@ -66,6 +66,20 @@ public class ContinueScreen extends GLScreen
                         game.setScreen(new WorldScreen(game, j));
                         return;
                     }
+                }
+            }
+        }
+
+        len = keyEvents.size();
+        for(int i=0; i<len; i++)
+        {
+            Input.KeyEvent keyEvent = keyEvents.get(i);
+            if(keyEvent.type == Input.KeyEvent.KEY_UP)
+            {
+                if(keyEvent.keyCode == 4)
+                {
+                    game.setScreen(new MainMenuScreen(game));
+                    return;
                 }
             }
         }
