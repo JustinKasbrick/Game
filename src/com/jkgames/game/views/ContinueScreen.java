@@ -26,11 +26,12 @@ public class ContinueScreen extends GLScreen
     Rectangle[] saveFileBounds = {new Rectangle(400-168, 336-32, 336, 64),
             new Rectangle(400-168, 240-32, 336, 64),
             new Rectangle(400-168, 144-32, 336, 64)};
+    float alpha;
 
     public ContinueScreen(Game game) {
         super(game);
         guiCam = new Camera2D(glGraphics, 800, 480);
-        batcher = new SpriteBatcher(glGraphics, 100, false);
+        batcher = new SpriteBatcher(glGraphics, 100, true);
         soundBounds = new Rectangle(0, 0, 64, 64);
         touchPoint = new Vector2();
     }
@@ -79,7 +80,7 @@ public class ContinueScreen extends GLScreen
         gl.glEnable(GL10.GL_TEXTURE_2D);
 
         batcher.beginBatch(Assets.background);
-        batcher.drawSprite(400, 240, 800, 480, Assets.backgroundRegion);
+        batcher.drawSprite(400, 240, 800, 480, Assets.backgroundRegion, 1);
         batcher.endBatch();
 
         gl.glEnable(GL10.GL_BLEND);
@@ -88,12 +89,17 @@ public class ContinueScreen extends GLScreen
         batcher.beginBatch(Assets.items);
 
 
-        batcher.drawSprite(400, 336, 336, 64, Assets.saveBar);
-        Assets.font.drawText(batcher, Settings.saveFiles[0].summaryData, 250, 336);
-        batcher.drawSprite(400, 240, 336, 64, Assets.saveBar);
-        Assets.font.drawText(batcher, Settings.saveFiles[1].summaryData, 250, 240);
-        batcher.drawSprite(400, 144, 336, 64, Assets.saveBar);
-        Assets.font.drawText(batcher, Settings.saveFiles[2].summaryData, 250, 144);
+        float offset = 0;
+        for(int i=0; i<3; i++)
+        {
+            if(Settings.saveFiles[i].empty)
+                alpha = 0.5f;
+            else
+                alpha = 1f;
+            batcher.drawSprite(400, 336-offset, 336, 64, Assets.saveBar, alpha);
+            Assets.font.drawAlphaText(batcher, Settings.saveFiles[i].summaryData, 250, 336-offset, alpha);
+            offset += 96;
+        }
 
         batcher.endBatch();
 
