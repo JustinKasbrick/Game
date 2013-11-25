@@ -35,7 +35,7 @@ public class Bob extends DynamicGameObject{
         super(x, y, BOB_WIDTH-0.2f, BOB_HEIGHT);
         state = BOB_STATE_FALL;
         stateTime = 0;
-		direction = BOB_DIRECTION_LEFT;
+		direction = BOB_DIRECTION_RIGHT;
     }
 
     public void update(float deltaTime) {

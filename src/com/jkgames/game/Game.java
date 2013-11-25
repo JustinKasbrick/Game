@@ -32,9 +32,16 @@ public class Game extends GLGame
 			Assets.reload();
 		}
 	}
-	
+
+    @Override
+    public void onBackPressed()
+    {
+        //do nothing please;
+
+    }
+
 	@Override
-	public void onPause() 
+	public void onPause()
 	{
 		super.onPause();
 		//if(Settings.soundEnabled)

@@ -96,7 +96,7 @@ public class WorldScreen extends GLScreen
         batcher.beginBatch(Assets.items);
 
         starOffSet = -15;
-        for(int i=0; i<Settings.saveFiles[saveFileNumber].currentLevel; i++)
+        for(int i=0; i<=Settings.saveFiles[saveFileNumber].currentLevel; i++)
         {
             batcher.drawSprite(levels.get(i).position.x, levels.get(i).position.y, 32, 32, Assets.levelCircle);
             for(int j=0; j<3; j++)
@@ -125,7 +125,7 @@ public class WorldScreen extends GLScreen
     public void resume() {
         int coinOffset = 4;
         Settings.readSaveFile(game.getFileIO(), saveFileNumber);
-        for (int i=0; i<NUMBER_OF_LEVELS; i++)
+        for (int i=0; i<=Settings.saveFiles[saveFileNumber].currentLevel; i++)
 
                 levels.add(i, new Level(Settings.saveFiles[saveFileNumber].coinsCollected[i*coinOffset],
                         Settings.saveFiles[saveFileNumber].coinsCollected[i*coinOffset+1],
