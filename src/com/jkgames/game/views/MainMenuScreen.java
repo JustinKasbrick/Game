@@ -53,11 +53,13 @@ public class MainMenuScreen extends GLScreen {
                     game.setScreen(new ContinueScreen(game));
                     return;
                 }
-                //if(OverlapTester.pointInRectangle(highscoresBounds, touchPoint)) {
+
+                if(OverlapTester.pointInRectangle(newGameBounds, touchPoint)) {
                     //Assets.playSound(Assets.clickSound);
-                    //game.setScreen(new HighscoreScreen(game));
-                //    return;
-                //}
+                    game.setScreen(new NewGameScreen(game));
+                    return;
+                }
+
                 //if(OverlapTester.pointInRectangle(helpBounds, touchPoint)) {
                     //Assets.playSound(Assets.clickSound);
                     //game.setScreen(new HelpScreen(game));
