@@ -96,7 +96,7 @@ public class WorldScreen extends GLScreen
         batcher.beginBatch(Assets.items);
 
         starOffSet = -15;
-        for(int i=0; i<levels.size(); i++)
+        for(int i=0; i<Settings.saveFiles[saveFileNumber].currentLevel; i++)
         {
             batcher.drawSprite(levels.get(i).position.x, levels.get(i).position.y, 32, 32, Assets.levelCircle);
             for(int j=0; j<3; j++)
