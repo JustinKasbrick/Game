@@ -81,7 +81,7 @@ public class NewGameScreen extends GLScreen
         gl.glEnable(GL10.GL_TEXTURE_2D);
 
         batcher.beginBatch(Assets.background);
-        batcher.drawSprite(400, 240, 800, 480, Assets.backgroundRegion);
+        batcher.drawSprite(400, 240, 800, 480, Assets.backgroundRegion, 1);
         batcher.endBatch();
 
         gl.glEnable(GL10.GL_BLEND);
@@ -93,11 +93,11 @@ public class NewGameScreen extends GLScreen
         for(int i=0; i<3; i++)
         {
             if(Settings.saveFiles[i].empty)
-                alpha = 0.5f;
-            else
                 alpha = 1f;
+            else
+                alpha = 0.5f;
             batcher.drawSprite(400, 336-offset, 336, 64, Assets.saveBar, alpha);
-            Assets.font.drawText(batcher, Settings.saveFiles[i].summaryData, 250, 336-offset);
+            Assets.font.drawAlphaText(batcher, Settings.saveFiles[i].summaryData, 250, 336-offset, alpha);
             offset += 96;
         }
 
