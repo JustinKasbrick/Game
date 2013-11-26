@@ -44,7 +44,7 @@ public class SaveFile implements Serializable {
 
     public void coinCollected(int level, int coinPositionInLevel)
     {
-        coinsCollected[((level-1) * 4) + coinPositionInLevel] = 1;
+        coinsCollected[((level) * 4) + coinPositionInLevel] = 1;
         numCoinsCollected++;
     }
 
