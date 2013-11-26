@@ -44,11 +44,25 @@ public class SaveFile implements Serializable {
 
     public void coinCollected(int level, int coinPositionInLevel)
     {
-        coinsCollected[((level-1) * 4) + coinPositionInLevel] = 1;
-        numCoinsCollected++;
+        if(level*4 < coinsCollected.length)
+        {
+            coinsCollected[((level) * 4) + coinPositionInLevel] = 1;
+            numCoinsCollected++;
+        }
     }
 
-
+    public int getLastAvailableLevel()
+    {
+        int last = 0;
+        for(int i=4; i< coinsCollected.length; i+=4)
+        {
+            if(coinsCollected[i] == 1)
+                last = i/4;
+            else
+                break;
+        }
+        return last;
+    }
 
 	public void LoadDisplayData()
 	{

@@ -252,13 +252,12 @@ public class GameScreen extends GLScreen {
             
             touchPoint.set(event.x, event.y);
             guiCam.touchToWorld(touchPoint);
-            
-//            if(OverlapTester.pointInRectangle(attackBounds, touchPoint) && attack == false) {
-//		        world = new World(worldListener, new Level(game.getFileIO(), levelArray[currentLevel]), tileLevel, currentLevel);
-//		        renderer = new WorldRenderer(glGraphics, batcher, world);
-//		        world.score = lastScore;
-//		        state = GAME_READY;
-//            }
+
+            Settings.saveFiles[saveFile].coinCollected(currentLevel+1, 0);
+            Settings.writeSaveFile(game.getFileIO(), saveFile);
+
+            game.setScreen(new WorldScreen(game, saveFile));
+            return;
         }
     }
 
@@ -349,7 +348,6 @@ public class GameScreen extends GLScreen {
         if(state == GAME_RUNNING)
             state = GAME_PAUSED;
         Settings.save(game.getFileIO());
-        Settings.writeSaveFile(game.getFileIO(), saveFile);
     }
 
     @Override
