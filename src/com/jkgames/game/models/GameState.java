@@ -16,7 +16,9 @@ public class GameState
 	public int[][] levelArray;
 	public Vector2 bobPosition;
 	public boolean inLevel = false;
-	
+	public int currentLevel;
+
+
 	public GameState (int numLevels)
 	{
 		this.numLevels = numLevels;
