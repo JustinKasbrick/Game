@@ -2,10 +2,7 @@ package com.jkgames.game.controllers;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import com.badlogic.androidgames.framework.gl.Animation;
-import com.badlogic.androidgames.framework.gl.Camera2D;
-import com.badlogic.androidgames.framework.gl.SpriteBatcher;
-import com.badlogic.androidgames.framework.gl.TextureRegion;
+import com.badlogic.androidgames.framework.gl.*;
 import com.badlogic.androidgames.framework.impl.GLGraphics;
 
 import com.jkgames.game.models.Bob;
@@ -131,9 +128,14 @@ public class WorldRenderer {
         for(int i = 0; i < 3; i++) 
         {
             CollectorCoin coin = world.collectorCoins.get(i);
+            TextureRegion t;
+            if(coin.Collected)
+                t = Assets.collectorCoin;
+            else
+                t = Assets.emptyCoin;
             if(!coin.Collected)
             	batcher.drawSprite(coin.position.x, coin.position.y, 
-            			CollectorCoin.COLLECTOR_COIN_WIDTH, CollectorCoin.COLLECTOR_COIN_HEIGHT, Assets.collectorCoin);            
+            			CollectorCoin.COLLECTOR_COIN_WIDTH, CollectorCoin.COLLECTOR_COIN_HEIGHT, t);
         }
 	}
 

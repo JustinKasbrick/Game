@@ -37,6 +37,21 @@ public class Level {
         }
     }
 
+    public String loadTiles(FileIO fileIO, String fileName) {
+        InputStream in = null;
+        String tiles = "";
+        try {
+            in = fileIO.readAsset(fileName);
+            tiles = loadTextFile(in);
+        } catch(IOException e) {
+            throw new RuntimeException("Couldn't load file '" + fileName +"'", e);
+        } finally {
+            if(in != null)
+                try { in.close(); } catch (IOException e) { }
+        }
+        return tiles;
+    }
+
 	private String loadTextFile(InputStream inputStream) throws IOException {
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
         byte[] bytes = new byte[4096];
