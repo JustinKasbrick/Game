@@ -88,7 +88,7 @@ public class GameScreen extends GLScreen {
             }                      
         };
         tileLevel = level;
-		world = new World(worldListener, null, tileLevel, currentLevel);
+		world = new World(worldListener, tileLevel.loadTiles(game.getFileIO(), "Level"+currentLevel+"Tiles.txt"), tileLevel, currentLevel);
         Settings.saveFiles[saveFile].save(currentLevel);
         renderer = new WorldRenderer(glGraphics, batcher, world);
         alphaRenderer = new WorldRenderer(glGraphics, alphaBatcher, world);

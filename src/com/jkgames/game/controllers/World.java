@@ -67,8 +67,9 @@ public class World {
     public TileFactory tileFactory;
     public String saveFile;
     int currentLevel;
+    String tiles;
     
-    public World(WorldListener listener, Level level, Level tileLevel, int curLevel) {
+    public World(WorldListener listener, String tiles, Level tileLevel, int curLevel) {
     	grid = new SpatialHashGrid(WORLD_WIDTH, WORLD_HEIGHT, 25f);
     	tileArray = new int[WORLD_HEIGHT][WORLD_WIDTH];
     	this.bob = new Bob(0, 0);
@@ -80,7 +81,7 @@ public class World {
 		this.drawBridges = new ArrayList<DrawBridge>();
 		this.bridgeSwitches = new ArrayList<BridgeSwitch>();
         this.listener = listener;
-		this.level = level;
+		this.tiles = tiles;
 		this.tileLevel = tileLevel;
 		this.tileFactory = new TileFactory();
 		currentLevel = curLevel;
@@ -100,7 +101,7 @@ public class World {
     	{
     		for(int j=0; j<WORLD_WIDTH; j++)
     		{
-    			tileArray[i][j] = Integer.parseInt(tileLevel.text.substring(start, start+2));
+    			tileArray[i][j] = Integer.parseInt(tiles.substring(start, start+2));
     			start += 2;
     		}
     	}
@@ -135,8 +136,8 @@ public class World {
 		}
 		
         for(int i=0; i<numObjs; i++)
-        {
-        	//if(Settings.gameState.levelArray[currentLevel][i] != 1)
+        {   // level is null;
+        	if(level.coinsArray[i] != 1)
         		grid.insertStaticObject(collectorCoins.get(i));
 //        	else
 //        		collectorCoins.get(i).Collected = true;
