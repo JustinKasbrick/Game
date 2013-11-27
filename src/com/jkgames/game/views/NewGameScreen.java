@@ -62,7 +62,9 @@ public class NewGameScreen extends GLScreen
                     {
                         if(OverlapTester.pointInRectangle(saveFileBounds[j], touchPoint)) {
                             //Assets.playSound(Assets.clickSound);
-
+                            Settings.saveFiles[j].coinsCollected[0] = 1;
+                            Settings.saveFiles[j].currentLevel = 0;
+                            Settings.writeSaveFile(game.getFileIO(), j);
                             game.setScreen(new WorldScreen(game, j));
                             return;
                         }

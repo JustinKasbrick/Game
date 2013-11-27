@@ -10,7 +10,9 @@ import com.badlogic.androidgames.framework.math.Rectangle;
 import com.badlogic.androidgames.framework.math.Vector2;
 import com.jkgames.game.controllers.Settings;
 import com.jkgames.game.models.Assets;
+import com.jkgames.game.models.Bob;
 import com.jkgames.game.models.Level;
+import com.jkgames.game.models.WorldBob;
 
 import javax.microedition.khronos.opengles.GL10;
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ public class WorldScreen extends GLScreen
     SpriteBatcher batcher;
     Rectangle soundBounds;
     Vector2 touchPoint;
+    WorldBob bob;
     public final List<Level> levels;
     int starOffSet;
     int saveFileNumber;
@@ -40,11 +43,18 @@ public class WorldScreen extends GLScreen
         touchPoint = new Vector2();
         this.saveFileNumber = saveFileNumber;
         levels = new ArrayList<Level>();
+        bob = new WorldBob(0, 0, 32, 32);
     }
 
 
     @Override
     public void update(float deltaTime) {
+
+            if(bob.position != bob.destination)
+                bob.update(deltaTime);
+
+
+
         List<Input.TouchEvent> touchEvents = game.getInput().getTouchEvents();
         game.getInput().getKeyEvents();
 
@@ -106,9 +116,7 @@ public class WorldScreen extends GLScreen
                 starOffSet += 15;
             }
         }
-        batcher.drawSprite(levels.get(Settings.saveFiles[saveFileNumber].currentLevel).position.x+5,
-                levels.get(Settings.saveFiles[saveFileNumber].currentLevel).position.y+15,
-                32, 32, Assets.bob);
+        batcher.drawSprite(bob.position.x+5, bob.position.y+15, bob.bounds.width, bob.bounds.height, Assets.bob);
         //batcher.drawSprite(32, 32, 64, 64, Settings.soundEnabled?Assets.soundOn:Assets.soundOff);
 
         batcher.endBatch();
@@ -125,13 +133,19 @@ public class WorldScreen extends GLScreen
     public void resume() {
         int coinOffset = 4;
         Settings.readSaveFile(game.getFileIO(), saveFileNumber);
-        for (int i=0; i<=Settings.saveFiles[saveFileNumber].currentLevel; i++)
-
-                levels.add(i, new Level(Settings.saveFiles[saveFileNumber].coinsCollected[i*coinOffset],
+        for (int i=0; i<=Settings.saveFiles[saveFileNumber].currentLevel+1; i++)
+        {
+            if(i*coinOffset+3 < Settings.saveFiles[saveFileNumber].coinsCollected.length)
+                levels.add(new Level(Settings.saveFiles[saveFileNumber].coinsCollected[i*coinOffset],
                         Settings.saveFiles[saveFileNumber].coinsCollected[i*coinOffset+1],
                         Settings.saveFiles[saveFileNumber].coinsCollected[i*coinOffset+2],
                         Settings.saveFiles[saveFileNumber].coinsCollected[i*coinOffset+3],
                         levelPositionArray[i]));
+        }
+        bob.position.x = levels.get(Settings.saveFiles[saveFileNumber].currentLevel).position.x;
+        bob.position.y = levels.get(Settings.saveFiles[saveFileNumber].currentLevel).position.y;
+        bob.destination = bob.position;
+
     }
 
     @Override
